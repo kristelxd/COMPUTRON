@@ -22,7 +22,6 @@
       --brand-red: #D7263D;
       --muted: #6b7280;
       --card-radius: 14px;
-      --glass: rgba(255,255,255,0.75);
       --max-width: 1180px;
     }
     * { box-sizing: border-box; }
@@ -31,7 +30,6 @@
       color: #122028;
       background: linear-gradient(180deg,#f7f9fc 0%, #ffffff 100%);
       -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
     }
 
     /* NAV */
@@ -54,7 +52,6 @@
       grid-template-columns: 1fr 420px;
       gap: 20px;
       align-items:center;
-      padding: 0;
       background: linear-gradient(180deg, rgba(0,94,184,0.06), rgba(215,38,61,0.02));
       box-shadow: 0 18px 60px rgba(3,24,78,0.06);
     }
@@ -106,21 +103,16 @@
     /* Footer */
     footer { margin-top:36px; padding:20px 0; background: #f7f9fc; }
 
+    /* FAQ & Testimonials */
+    .faq q { font-style: italic; }
+    .testimonials .card { border-radius:12px; padding:18px; background:#fff; box-shadow:0 12px 30px rgba(3,24,78,0.06); }
+
     /* Responsive tweaks */
     @media(max-width: 980px) {
       .hero { grid-template-columns: 1fr; padding-bottom:0; }
       .hero-right { order:-1; }
       .hero-right img { height:220px; object-fit:cover; }
     }
-
-    /* Small animations */
-    .fade-up { transform: translateY(10px); opacity:0; animation:fadeUp .7s forwards; }
-    .fade-up.delay-1 { animation-delay:.08s; }
-    .fade-up.delay-2 { animation-delay:.16s; }
-    @keyframes fadeUp { to { transform:none; opacity:1; } }
-
-    /* Accessible focus outlines */
-    a:focus, button:focus { outline:3px solid rgba(0,94,184,0.18); outline-offset:3px; }
   </style>
 </head>
 <body>
@@ -144,6 +136,7 @@
           <li class="nav-item"><a class="nav-link" href="#especialidades">Especialidades</a></li>
           <li class="nav-item"><a class="nav-link" href="#mallas">Mallas</a></li>
           <li class="nav-item"><a class="nav-link" href="#sedes">Sedes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
           <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
         </ul>
       </div>
@@ -151,10 +144,10 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" role="banner" aria-label="Hero">
     <div class="hero-left">
       <h1>Formación técnica práctica para trabajar y emprender</h1>
-      <p class="lead">Programas modulares (6 meses), vacacionales y anuales. Mallas orientadas a la práctica, docentes con experiencia y plazas laborales en el sector.</p>
+      <p class="lead">Programas modulares (6 meses), vacacionales y anuales. Mallas orientadas a la práctica, docentes con experiencia y salida laboral inmediata.</p>
       <div class="hero-cta">
         <a class="btn btn-primary btn-lg" href="#especialidades">Ver especialidades</a>
         <a class="btn btn-outline-primary btn-lg" href="#contacto">Solicitar información</a>
@@ -164,19 +157,19 @@
         <small style="color:var(--muted); margin-left:8px;">Cupos limitados por inicio de ciclo</small>
       </div>
     </div>
-    <div class="hero-right">
+    <div class="hero-right" aria-hidden="true">
       <img src="img/banner.png" alt="Banner COMPUTRON" loading="lazy">
     </div>
   </section>
 
-  <!-- ESPECIALIDADES (grid con tarjetas) -->
+  <!-- ESPECIALIDADES (grid con tarjetas y textos formales) -->
   <section id="especialidades" class="cards-grid" aria-label="Especialidades">
     <!-- Tarjeta Operación y Maquinaria Pesada -->
-    <article class="spec-card fade-up delay-1" role="region" aria-labelledby="titulo-maq">
+    <article class="spec-card" role="region" aria-labelledby="titulo-maq">
       <img class="media" src="img/maquinaria-pesada.jpg" alt="Maquinaria pesada" loading="lazy">
       <div class="body">
         <h3 id="titulo-maq">Operación y Maquinaria Pesada</h3>
-        <p>Formación en operación segura, mantenimiento básico y prácticas en campo. Enfoque en empleabilidad inmediata.</p>
+        <p>Programa diseñado para formar operadores calificados en el manejo seguro y eficiente de maquinaria pesada. El plan de estudio integra teoría técnica con prácticas en campo, normativa de seguridad y gestión de mantenimiento predictivo, con énfasis en la competitividad laboral.</p>
         <div class="spec-actions">
           <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-maq" aria-expanded="false">Ver detalles</button>
           <a class="btn btn-primary btn-sm" href="mallas/operacion-maquinaria.pdf" target="_blank" rel="noopener">Descargar malla</a>
@@ -190,11 +183,11 @@
     </article>
 
     <!-- Tarjeta Estética y Cosmetología -->
-    <article class="spec-card fade-up delay-2" role="region" aria-labelledby="titulo-est">
+    <article class="spec-card" role="region" aria-labelledby="titulo-est">
       <img class="media" src="img/estetica-cosmetologia.jpg" alt="Estética y cosmetología" loading="lazy">
       <div class="body">
         <h3 id="titulo-est">Estética y Cosmetología</h3>
-        <p>Capacitación práctica en tratamientos estéticos, maquillaje y gestión de servicios de belleza.</p>
+        <p>Formación integral en técnicas estéticas, dermocosmética y gestión de servicios de belleza. El currículo prioriza prácticas en cabina, protocolos de seguridad e introducción a la gestión comercial del servicio para promover emprendimientos sostenibles.</p>
         <div class="spec-actions">
           <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-est" aria-expanded="false">Ver detalles</button>
           <a class="btn btn-primary btn-sm" href="mallas/estetica-cosmetologia.pdf" target="_blank" rel="noopener">Descargar malla</a>
@@ -208,11 +201,11 @@
     </article>
 
     <!-- Tarjeta Barbería -->
-    <article class="spec-card fade-up delay-1" role="region" aria-labelledby="titulo-barb">
+    <article class="spec-card" role="region" aria-labelledby="titulo-barb">
       <img class="media" src="img/barberia.jpg" alt="Barbería" loading="lazy">
       <div class="body">
         <h3 id="titulo-barb">Barbería</h3>
-        <p>Técnicas modernas de corte, afeitado y diseño de barba, con orientación a emprendimiento.</p>
+        <p>Especialidad orientada a técnicas contemporáneas de corte, diseño de barba y experiencia de cliente. Incluye formación en higiene y bioseguridad, atención comercial y gestión básica para emprendedores del sector.</p>
         <div class="spec-actions">
           <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-barb" aria-expanded="false">Ver detalles</button>
           <a class="btn btn-primary btn-sm" href="mallas/barberia.pdf" target="_blank" rel="noopener">Descargar malla</a>
@@ -225,11 +218,11 @@
     </article>
 
     <!-- Tarjeta Computación e Informática -->
-    <article class="spec-card fade-up delay-2" role="region" aria-labelledby="titulo-comp">
+    <article class="spec-card" role="region" aria-labelledby="titulo-comp">
       <img class="media" src="img/computacion-informatica.jpg" alt="Computación e informática" loading="lazy">
       <div class="body">
         <h3 id="titulo-comp">Computación e Informática</h3>
-        <p>Programación básica, ofimática, redes y soporte técnico con proyectos prácticos.</p>
+        <p>Programa técnico en ofimática, mantenimiento de equipos, redes básicas y programación elemental. Incluye proyectos aplicados para el desarrollo de competencias buscadas por empleadores del sector tecnológico y de servicios.</p>
         <div class="spec-actions">
           <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-comp" aria-expanded="false">Ver detalles</button>
           <a class="btn btn-primary btn-sm" href="mallas/computacion-informatica.pdf" target="_blank" rel="noopener">Descargar malla</a>
@@ -243,11 +236,11 @@
     </article>
 
     <!-- Tarjeta Asistente Administrativo -->
-    <article class="spec-card fade-up delay-1" role="region" aria-labelledby="titulo-asist">
+    <article class="spec-card" role="region" aria-labelledby="titulo-asist">
       <img class="media" src="img/asistente-administrativo.jpg" alt="Asistente administrativo" loading="lazy">
       <div class="body">
         <h3 id="titulo-asist">Asistente Administrativo</h3>
-        <p>Competencias administrativas, atención al cliente, ofimática y organización documental.</p>
+        <p>Formación en procesos administrativos, atención al cliente, gestión documental y herramientas ofimáticas, orientada a la inserción laboral en pymes, instituciones públicas y oficinas comerciales.</p>
         <div class="spec-actions">
           <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-asist" aria-expanded="false">Ver detalles</button>
           <a class="btn btn-primary btn-sm" href="mallas/asistente-administrativo.pdf" target="_blank" rel="noopener">Descargar malla</a>
@@ -260,11 +253,11 @@
     </article>
 
     <!-- Tarjeta Hotelería y Turismo -->
-    <article class="spec-card fade-up delay-2" role="region" aria-labelledby="titulo-hot">
+    <article class="spec-card" role="region" aria-labelledby="titulo-hot">
       <img class="media" src="img/hoteleria-turismo.jpg" alt="Hotelería y turismo" loading="lazy">
       <div class="body">
         <h3 id="titulo-hot">Hotelería y Turismo</h3>
-        <p>Atención al cliente, gestión hotelera y experiencias turísticas con prácticas en empresas.</p>
+        <p>Formación práctica en atención hotelera, servicios turísticos y operaciones, con prácticas en empresas locales y preparación para roles operativos en el sector turismo y hospitalidad.</p>
         <div class="spec-actions">
           <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-hot" aria-expanded="false">Ver detalles</button>
           <a class="btn btn-primary btn-sm" href="mallas/hoteleria-turismo.pdf" target="_blank" rel="noopener">Descargar malla</a>
@@ -322,24 +315,93 @@
     </div>
   </section>
 
-  <!-- SEDES -->
+  <!-- SEDES con Google Maps embed -->
   <section id="sedes" class="container" style="max-width:var(--max-width); margin-top:34px;">
     <h2>Sedes</h2>
     <div class="row g-3">
       <div class="col-md-6">
         <div class="sede-card">
           <h5>La Merced — Chanchamayo</h5>
-          <p class="text-muted mb-1">Dirección: <em>(ingresa la dirección exacta si la tienes)</em></p>
-          <p class="mb-1">Tel/WhatsApp: <a href="https://wa.me/51999111468" target="_blank">+51 999 111 468</a></p>
-          <p class="mb-0"><a href="https://www.google.com/maps" target="_blank">Ver en Google Maps</a></p>
+          <p class="text-muted mb-1"><strong>Dirección:</strong> Jr. Lima 109, La Merced 12856</p>
+          <p class="mb-1"><strong>Tel/WhatsApp:</strong> <a href="https://wa.me/51999111468" target="_blank">+51 999 111 468</a></p>
+          <div style="margin-top:10px;">
+            <!-- Google Maps embed por consulta de dirección -->
+            <iframe
+              src="https://www.google.com/maps?q=Jr.+Lima+109+La+Merced+12856&output=embed"
+              width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
         </div>
       </div>
+
       <div class="col-md-6">
         <div class="sede-card">
           <h5>Villarica</h5>
-          <p class="text-muted mb-1">Dirección: <em>(ingresa la dirección exacta si la tienes)</em></p>
-          <p class="mb-1">Tel/WhatsApp: <a href="https://wa.me/51948055547" target="_blank">+51 948 055 547</a></p>
-          <p class="mb-0"><a href="https://www.google.com/maps" target="_blank">Ver en Google Maps</a></p>
+          <p class="text-muted mb-1"><strong>Dirección:</strong> Jr. Carlos Moali 375, Villa Rica 19300</p>
+          <p class="mb-1"><strong>Tel/WhatsApp:</strong> <a href="https://wa.me/51948055547" target="_blank">+51 948 055 547</a></p>
+          <div style="margin-top:10px;">
+            <!-- Google Maps embed por consulta de dirección -->
+            <iframe
+              src="https://www.google.com/maps?q=Jr.+Carlos+Moali+375+Villa+Rica+19300&output=embed"
+              width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="container" style="max-width:var(--max-width); margin-top:34px;">
+    <h2>Preguntas frecuentes (FAQ)</h2>
+    <div class="row g-3 mt-2">
+      <div class="col-md-6">
+        <div class="card p-3">
+          <h6>¿Cómo me inscribo?</h6>
+          <p class="text-muted">Envíanos un mensaje por WhatsApp indicando especialidad, sede y modalidad. Nuestro equipo le indicará los pasos para matrícula, documentación y fechas de inicio.</p>
+        </div>
+        <div class="card p-3 mt-2">
+          <h6>¿Qué modalidades ofrecen?</h6>
+          <p class="text-muted">Ofrecemos tres modalidades: Vacacional (cursos cortos), Modular (6 meses, 1 clase semanal) y Anual (programa intensivo). Elige la opción que mejor se adapte a tu disponibilidad.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card p-3">
+          <h6>¿Tienen prácticas o convenios laborales?</h6>
+          <p class="text-muted">Sí. Trabajamos con empresas locales y redes de servicio para facilitar prácticas y oportunidades de inserción laboral a nuestros egresados.</p>
+        </div>
+        <div class="card p-3 mt-2">
+          <h6>¿Qué documentos necesito para matricularme?</h6>
+          <p class="text-muted">Documento de identidad, comprobante de pago (según modalidad), fotografía reciente y formulario de inscripción que le enviaremos por WhatsApp tras contactar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="container testimonials" style="max-width:var(--max-width); margin-top:34px;">
+    <h2>Testimonios</h2>
+    <div class="row g-3 mt-2">
+      <div class="col-md-4">
+        <div class="card p-3">
+          <blockquote>
+            <p class="mb-1">"La formación fue práctica y muy enfocada al trabajo. Gracias a COMPUTRON conseguí empleo en menos de dos meses."</p>
+            <footer class="text-muted">— María López, egresada (Asistente Administrativo)</footer>
+          </blockquote>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3">
+          <blockquote>
+            <p class="mb-1">"Las clases en fin de semana permitieron que me capacite sin dejar mi trabajo. Profesores muy competentes."</p>
+            <footer class="text-muted">— Carlos R., egresado (Computación e Informática)</footer>
+          </blockquote>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3">
+          <blockquote>
+            <p class="mb-1">"Excelente acompañamiento del equipo desde la matrícula hasta las prácticas. Recomendado para quienes quieren entrar rápido al mercado laboral."</p>
+            <footer class="text-muted">— Ana P., egresada (Estética y Cosmetología)</footer>
+          </blockquote>
         </div>
       </div>
     </div>
@@ -364,10 +426,10 @@
         <p class="text-muted">Para inscripciones y consultas envía un mensaje por WhatsApp indicando:</p>
         <ol>
           <li>Especialidad de interés</li>
-          <li>Sede preferida (La Merced – Chanchamayo o Villarica)</li>
-          <li>Modalidad (Vacacional / Modular / Anual)</li>
+          <li>Sede preferida: La Merced — Chanchamayo o Villarica</li>
+          <li>Modalidad: Vacacional / Modular / Anual</li>
         </ol>
-        <p class="text-muted">Nuestro equipo te responderá con pasos para matrícula, fechas y costos.</p>
+        <p class="text-muted">Nuestro equipo responderá con pasos de matrícula, costos y la documentación requerida.</p>
       </div>
     </div>
   </section>
@@ -408,14 +470,6 @@
           e.preventDefault();
           target.scrollIntoView({ behavior:'smooth', block:'start' });
         }
-      });
-    });
-
-    // Small fade-up animation trigger
-    document.addEventListener('DOMContentLoaded', ()=>{
-      document.querySelectorAll('.fade-up').forEach((el,i)=>{
-        el.style.animationDelay = (i*80) + 'ms';
-        el.classList.add('fade-up--run');
       });
     });
   </script>
