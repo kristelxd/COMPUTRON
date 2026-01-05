@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>CETPRO COMPUTRON — Formación técnica</title>
-  <meta name="description" content="CETPRO COMPUTRON — Especialidades técnicas: Operación y Maquinaria Pesada, Estética y Cosmetología, Barbería, Computación e Informática, Asistente Administrativo, Hotelería y Turismo.">
+  <meta name="description" content="CETPRO COMPUTRON — Especialidades: Operación y Maquinaria Pesada, Estética y Cosmetología, Barbería, Computación e Informática, Asistente Administrativo, Hotelería y Turismo.">
   <meta property="og:title" content="CETPRO COMPUTRON — Formación técnica">
-  <meta property="og:description" content="Programas modulares, vacacionales y anuales orientados a empleabilidad. Inscripciones abiertas.">
+  <meta property="og:description" content="Programas modulares, vacacionales y anuales orientados a empleabilidad.">
   <meta property="og:image" content="img/banner-horizontal.png">
   <meta name="theme-color" content="#005EB8">
 
@@ -24,108 +24,109 @@
       --card-radius: 14px;
       --max-width: 1180px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
+    *{ box-sizing: border-box; }
     body{
+      margin:0;
       font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       color:#122028;
-      background:linear-gradient(180deg,#f7f9fc 0%, #ffffff 100%);
+      background: linear-gradient(180deg,#f7f9fc 0%, #ffffff 100%);
       -webkit-font-smoothing:antialiased;
-      margin:0;
-      padding:0;
     }
 
     /* NAV */
-    .navbar{ background:linear-gradient(90deg,var(--brand-blue), var(--brand-blue-2)); box-shadow:0 6px 20px rgba(3,24,78,0.08); }
-    .navbar-brand{ display:flex; gap:.8rem; align-items:center; }
-    .navbar-brand img{ height:48px; }
-    .nav-link{ color:rgba(255,255,255,0.95) !important; }
-
-    /* CAROUSEL (hero) */
-    .carousel-full{
-      width:100%;
-      --hero-height: clamp(420px, 60vh, 760px);
-      position:relative;
-      background:#0f1724;
+    .navbar{
+      background: linear-gradient(90deg,var(--brand-blue), var(--brand-blue-2));
+      box-shadow: 0 6px 20px rgba(3,24,78,0.08);
     }
-    .carousel-full .carousel-item{
+    .navbar-brand { display:flex; gap:.8rem; align-items:center; }
+    .navbar-brand img { height:48px; }
+    .nav-link { color: rgba(255,255,255,0.95) !important; }
+
+    /* HERO / CAROUSEL */
+    .hero-carousel {
+      width:100%;
+      height: clamp(420px, 60vh, 760px); /* suficiente altura para mostrar banners completos */
+      background-color: #0f1724;
       position: relative;
+    }
+
+    .hero-carousel .carousel-item {
+      position: relative;
+      height: 100%;
       overflow: hidden;
-      height: var(--hero-height);
       display:flex;
       align-items:center;
       justify-content:center;
-      z-index:0;
-      transition: transform .6s ease;
-    }
-    .carousel-full .carousel-item.active{ z-index:2; }
-
-    /* imagen por defecto (horizontal) */
-    .carousel-full .carousel-item > img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
+      z-index: 0;
+      transition: opacity .5s ease;
     }
 
-    /* slide vertical: contener y centrar la imagen, evitar recorte del diseño vertical */
-    .carousel-full .vertical-slide > img{
-      object-fit:contain;
-      width:auto;
-      max-width:100%;
-      height:100%;
-      display:block;
-      margin-left:auto;
-      margin-right:auto;
-      padding:0 8px;
-      background: linear-gradient(90deg, rgba(15,23,36,0.95), rgba(15,23,36,0.85));
+    .hero-carousel .carousel-item.active {
+      z-index: 1;
     }
 
-    /* CTA posicionado abajo-derecha dentro de la slide */
-    .banner-cta {
+    .hero-carousel .carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* muestra la imagen completa, sin recortar */
+      background-color: #0f1724; /* relleno si hay espacio lateral */
+      display: block;
+    }
+
+    /* CTA (visible sólo en slide activo que tenga el CTA) */
+    .hero-cta {
       position: absolute;
-      right: 24px;
       bottom: 24px;
-      z-index: 3;
-      display: flex;
-      gap: .5rem;
-      align-items: center;
+      right: 32px;
+      z-index: 5;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .28s ease, transform .28s ease;
     }
-    .banner-cta .btn { padding:.7rem 1rem; font-weight:600; border-radius:8px; }
+    /* cuando la slide es activa, el CTA dentro de ella se muestra */
+    .carousel-item.active .hero-cta { opacity:1; transform: translateY(0); }
 
-    /* indicadores */
-    .carousel-indicators [data-bs-target]{ background-color: rgba(255,255,255,0.85); }
+    .hero-cta .btn {
+      padding: 0.9rem 1.3rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(3,24,78,0.12);
+    }
 
-    /* layout de contenido */
-    .cards-grid{ max-width:var(--max-width); margin:30px auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; padding:0 14px 14px; }
-    .spec-card{ border-radius:var(--card-radius); overflow:hidden; background:#fff; transition:transform .25s ease,box-shadow .25s ease; box-shadow:0 8px 30px rgba(3,24,78,0.06); display:flex; flex-direction:column; }
-    .spec-card:hover{ transform:translateY(-10px); box-shadow:0 30px 60px rgba(3,24,78,0.08); }
+    .carousel-indicators [data-bs-target] { background-color: rgba(255,255,255,0.9); }
+
+    /* GRID de especialidades y tarjetas */
+    .container-max { max-width: var(--max-width); margin-left:auto; margin-right:auto; padding-left:16px; padding-right:16px; }
+    .cards-grid { max-width: var(--max-width); margin: 30px auto; display:grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap:20px; padding:0 14px 14px; }
+    .spec-card { border-radius: var(--card-radius); overflow: hidden; background: #fff; transition: transform .25s ease, box-shadow .25s ease; box-shadow: 0 8px 30px rgba(3,24,78,0.06); display:flex; flex-direction:column; }
+    .spec-card:hover{ transform: translateY(-8px); box-shadow:0 30px 60px rgba(3,24,78,0.08); }
     .spec-card .media{ width:100%; height:170px; object-fit:cover; display:block; }
     .spec-card .body{ padding:16px; flex:1; display:flex; flex-direction:column; gap:8px; }
-    .spec-card h3{ margin:0; color:var(--brand-blue); font-size:1.05rem; }
-    .spec-card p{ margin:0; color:var(--muted); font-size:.95rem; }
-    .spec-actions{ margin-top:auto; display:flex; gap:.6rem; align-items:center; }
-    .spec-details{ background:linear-gradient(180deg, rgba(0,0,0,0.01), rgba(0,0,0,0.003)); padding:14px; border-top:1px solid rgba(0,0,0,0.04); }
+    .spec-card h3{ margin:0; color:var(--brand-blue); }
+    .spec-details{ background: linear-gradient(180deg, rgba(0,0,0,0.01), rgba(0,0,0,0.003)); padding:14px; border-top:1px solid rgba(0,0,0,0.04); }
 
-    #mallas .card{ border-radius:12px; box-shadow:0 8px 20px rgba(3,24,78,0.04); }
+    /* Sedes, mallas, faq, testimonios */
     .sede-card{ border-radius:12px; padding:14px; background:#fff; box-shadow:0 10px 30px rgba(3,24,78,0.04); }
+    #mallas .card{ border-radius:12px; box-shadow:0 8px 20px rgba(3,24,78,0.04); }
 
-    /* floating CTA & whatsapp */
-    .floating-cta{ position:fixed; right:18px; bottom:18px; z-index:1100; border-radius:999px; display:flex; gap:.6rem; align-items:center; padding:10px 14px; background:linear-gradient(90deg,var(--brand-red),#e23a45); color:white; box-shadow:0 20px 50px rgba(215,38,61,0.18); text-decoration:none; font-weight:600; }
-    .whatsapp-fab{ position:fixed; right:18px; bottom:86px; z-index:1100; background:#25D366; color:white; width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 16px 36px rgba(0,0,0,0.12); text-decoration:none; }
+    /* Floating CTA + WhatsApp */
+    .floating-cta { position: fixed; right: 18px; bottom: 18px; z-index: 1100; border-radius: 999px; display:flex; gap:.6rem; align-items:center; padding:10px 14px; background: linear-gradient(90deg,var(--brand-red), #e23a45); color:white; box-shadow:0 20px 50px rgba(215,38,61,0.18); text-decoration:none; font-weight:600; }
+    .whatsapp-fab { position: fixed; right: 18px; bottom: 86px; z-index:1100; background:#25D366; color:white; width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 16px 36px rgba(0,0,0,0.12); text-decoration:none; }
 
     footer{ margin-top:36px; padding:20px 0; background:#f7f9fc; }
 
-    @media(max-width:980px){
-      .carousel-full{ --hero-height: clamp(320px, 50vh, 520px); }
-      .banner-cta{ right:12px; bottom:12px; }
+    @media (max-width: 768px) {
+      .hero-carousel { height: clamp(300px, 50vh, 520px); }
+      .hero-cta { bottom: 16px; right: 16px; }
     }
   </style>
 </head>
 <body>
+
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container" style="max-width:var(--max-width);">
+    <div class="container container-max">
       <a class="navbar-brand" href="#">
         <img src="img/logo.png" alt="Logo COMPUTRON" loading="lazy">
         <div style="display:inline-block;">
@@ -149,153 +150,152 @@
     </div>
   </nav>
 
-  <!-- CAROUSEL CORREGIDO: 2 banners, rotación 5s, CTA abajo-derecha en slide 2 -->
-  <div id="homeCarousel" class="carousel slide carousel-full" data-bs-ride="carousel" data-bs-interval="5000" aria-label="Banner rotativo">
+  <!-- HERO / CAROUSEL (2 banners horizontales, rotación 5s) -->
+  <div id="computronHero" class="carousel slide hero-carousel" data-bs-ride="carousel" data-bs-interval="5000" aria-label="Carrusel principal">
     <div class="carousel-inner">
-      <!-- slide 1 horizontal -->
+
+      <!-- Slide 1 -->
       <div class="carousel-item active">
         <img src="img/banner-horizontal.png" alt="Banner principal COMPUTRON" loading="lazy">
       </div>
 
-      <!-- slide 2 vertical con CTA abajo-derecha -->
-      <div class="carousel-item vertical-slide">
-        <img src="img/banner-vertical.png" alt="Banner secundario COMPUTRON" loading="lazy">
-        <div class="banner-cta" aria-hidden="true">
-          <!-- CTA abre WhatsApp -->
-          <a href="https://wa.me/51999111468" class="btn btn-dark btn-lg" aria-label="Inscríbete por WhatsApp">Inscríbete</a>
+      <!-- Slide 2 (con CTA abajo a la derecha) -->
+      <div class="carousel-item">
+        <img src="img/banner-horizontal-2.png" alt="Segundo banner COMPUTRON" loading="lazy">
+        <div class="hero-cta">
+          <a href="https://wa.me/51999111468" target="_blank" class="btn btn-danger" aria-label="Inscríbete por WhatsApp">Inscríbete ahora</a>
         </div>
       </div>
+
     </div>
 
-    <!-- controls -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev" aria-label="Anterior">
+    <!-- Controles -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#computronHero" data-bs-slide="prev" aria-label="Anterior">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next" aria-label="Siguiente">
+    <button class="carousel-control-next" type="button" data-bs-target="#computronHero" data-bs-slide="next" aria-label="Siguiente">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
     </button>
 
-    <!-- indicators -->
+    <!-- Indicadores -->
     <div class="position-absolute w-100" style="bottom:12px; left:0; text-align:center; z-index:5;">
       <div class="d-inline-block bg-black bg-opacity-25 rounded-pill py-1 px-2">
         <ol class="carousel-indicators mb-0" style="position:static;">
-          <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#computronHero" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#computronHero" data-bs-slide-to="1" aria-label="Slide 2"></button>
         </ol>
       </div>
     </div>
   </div>
 
   <!-- ESPECIALIDADES -->
-  <section id="especialidades" class="cards-grid" aria-label="Especialidades">
-    <!-- Operación y Maquinaria Pesada -->
-    <article class="spec-card" role="region" aria-labelledby="titulo-maq">
-      <img class="media" src="img/maquinaria-pesada.jpg" alt="Maquinaria pesada" loading="lazy">
-      <div class="body">
-        <h3 id="titulo-maq">Operación y Maquinaria Pesada</h3>
-        <p>Programa diseñado para formar operadores calificados en el manejo seguro y eficiente de maquinaria pesada. El plan integra teoría técnica con prácticas en campo, normativa de seguridad y mantenimiento predictivo.</p>
-        <div class="spec-actions">
-          <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-maq" aria-expanded="false">Ver detalles</button>
-          <a class="btn btn-primary btn-sm" href="mallas/operacion-maquinaria.pdf" target="_blank" rel="noopener">Descargar malla</a>
+  <main class="container-max">
+    <section id="especialidades" class="cards-grid" aria-label="Especialidades" style="margin-top:26px;">
+      <!-- Operación y Maquinaria Pesada -->
+      <article class="spec-card" role="region" aria-labelledby="titulo-maq">
+        <img class="media" src="img/maquinaria-pesada.jpg" alt="Maquinaria pesada" loading="lazy">
+        <div class="body">
+          <h3 id="titulo-maq">Operación y Maquinaria Pesada</h3>
+          <p>Programa diseñado para formar operadores calificados en el manejo seguro y eficiente de maquinaria pesada. Teoría técnica, prácticas en campo y mantenimiento predictivo con foco en empleabilidad.</p>
+          <div class="spec-actions">
+            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-maq">Ver detalles</button>
+            <a class="btn btn-primary btn-sm" href="mallas/operacion-maquinaria.pdf" target="_blank">Descargar malla</a>
+          </div>
         </div>
-      </div>
-      <div id="det-maq" class="spec-details collapse">
-        <p><strong>Duración:</strong> Modular (6 meses) / Vacacional / Anual</p>
-        <p><strong>Horarios (Modular):</strong> 1 clase por semana — Sábado o Domingo — 08:00–12:00 o 13:00–17:00</p>
-        <p><strong>Contacto:</strong> <a href="https://wa.me/51999111468" target="_blank">+51 999 111 468</a></p>
-      </div>
-    </article>
+        <div id="det-maq" class="spec-details collapse">
+          <p><strong>Duración:</strong> Modular (6 meses) / Vacacional / Anual</p>
+          <p><strong>Horarios (Modular):</strong> 1 clase por semana — Sábado o Domingo — 08:00–12:00 o 13:00–17:00</p>
+          <p><strong>Contacto:</strong> <a href="https://wa.me/51999111468">+51 999 111 468</a></p>
+        </div>
+      </article>
 
-    <!-- Estética y Cosmetología -->
-    <article class="spec-card" role="region" aria-labelledby="titulo-est">
-      <img class="media" src="img/estetica-cosmetologia.jpg" alt="Estética y cosmetología" loading="lazy">
-      <div class="body">
-        <h3 id="titulo-est">Estética y Cosmetología</h3>
-        <p>Formación integral en técnicas estéticas, dermocosmética y gestión de servicios de belleza. El currículo prioriza prácticas en cabina y gestión comercial del servicio.</p>
-        <div class="spec-actions">
-          <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-est" aria-expanded="false">Ver detalles</button>
-          <a class="btn btn-primary btn-sm" href="mallas/estetica-cosmetologia.pdf" target="_blank" rel="noopener">Descargar malla</a>
+      <!-- Estética y Cosmetología -->
+      <article class="spec-card" role="region" aria-labelledby="titulo-est">
+        <img class="media" src="img/estetica-cosmetologia.jpg" alt="Estética y cosmetología" loading="lazy">
+        <div class="body">
+          <h3 id="titulo-est">Estética y Cosmetología</h3>
+          <p>Formación integral en técnicas estéticas, dermocosmética y gestión de servicios. Prácticas en cabina y enfoque en emprendimiento sostenible.</p>
+          <div class="spec-actions">
+            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-est">Ver detalles</button>
+            <a class="btn btn-primary btn-sm" href="mallas/estetica-cosmetologia.pdf" target="_blank">Descargar malla</a>
+          </div>
         </div>
-      </div>
-      <div id="det-est" class="spec-details collapse">
-        <p><strong>Duración:</strong> Modular / Vacacional / Anual</p>
-        <p><strong>Instagram:</strong> <a href="https://instagram.com/COMPUTRON" target="_blank">@COMPUTRON</a></p>
-      </div>
-    </article>
+        <div id="det-est" class="spec-details collapse">
+          <p><strong>Duración:</strong> Modular / Vacacional / Anual</p>
+          <p><strong>Instagram:</strong> <a href="https://instagram.com/COMPUTRON" target="_blank">@COMPUTRON</a></p>
+        </div>
+      </article>
 
-    <!-- Barbería -->
-    <article class="spec-card" role="region" aria-labelledby="titulo-barb">
-      <img class="media" src="img/barberia.jpg" alt="Barbería" loading="lazy">
-      <div class="body">
-        <h3 id="titulo-barb">Barbería</h3>
-        <p>Técnicas contemporáneas de corte y diseño de barba, higiene y atención comercial con orientación a emprendimiento.</p>
-        <div class="spec-actions">
-          <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-barb" aria-expanded="false">Ver detalles</button>
-          <a class="btn btn-primary btn-sm" href="mallas/barberia.pdf" target="_blank" rel="noopener">Descargar malla</a>
+      <!-- Barbería -->
+      <article class="spec-card" role="region" aria-labelledby="titulo-barb">
+        <img class="media" src="img/barberia.jpg" alt="Barbería" loading="lazy">
+        <div class="body">
+          <h3 id="titulo-barb">Barbería</h3>
+          <p>Técnicas de corte, afeitado y diseño de barba con enfoque en higiene, atención comercial y emprendimiento.</p>
+          <div class="spec-actions">
+            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-barb">Ver detalles</button>
+            <a class="btn btn-primary btn-sm" href="mallas/barberia.pdf" target="_blank">Descargar malla</a>
+          </div>
         </div>
-      </div>
-      <div id="det-barb" class="spec-details collapse">
-        <p><strong>Duración:</strong> Modular / Vacacional / Anual</p>
-        <p><strong>Contacto:</strong> <a href="https://wa.me/51999111485" target="_blank">+51 999 111 485</a></p>
-      </div>
-    </article>
+        <div id="det-barb" class="spec-details collapse">
+          <p><strong>Contacto:</strong> <a href="https://wa.me/51999111485" target="_blank">+51 999 111 485</a></p>
+        </div>
+      </article>
 
-    <!-- Computación e Informática -->
-    <article class="spec-card" role="region" aria-labelledby="titulo-comp">
-      <img class="media" src="img/computacion-informatica.jpg" alt="Computación e informática" loading="lazy">
-      <div class="body">
-        <h3 id="titulo-comp">Computación e Informática</h3>
-        <p>Ofimática, mantenimiento de equipos, redes y programación elemental con proyectos aplicados y orientación a empleo.</p>
-        <div class="spec-actions">
-          <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-comp" aria-expanded="false">Ver detalles</button>
-          <a class="btn btn-primary btn-sm" href="mallas/computacion-informatica.pdf" target="_blank" rel="noopener">Descargar malla</a>
+      <!-- Computación e Informática -->
+      <article class="spec-card" role="region" aria-labelledby="titulo-comp">
+        <img class="media" src="img/computacion-informatica.jpg" alt="Computación e informática" loading="lazy">
+        <div class="body">
+          <h3 id="titulo-comp">Computación e Informática</h3>
+          <p>Ofimática, soporte, redes y programación básica con proyectos aplicados y orientación a empleabilidad.</p>
+          <div class="spec-actions">
+            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-comp">Ver detalles</button>
+            <a class="btn btn-primary btn-sm" href="mallas/computacion-informatica.pdf" target="_blank">Descargar malla</a>
+          </div>
         </div>
-      </div>
-      <div id="det-comp" class="spec-details collapse">
-        <p><strong>Duración:</strong> Modular (6 meses) / Anual</p>
-        <p><strong>Email:</strong> info@computron.edu.pe</p>
-      </div>
-    </article>
+        <div id="det-comp" class="spec-details collapse">
+          <p><strong>Email:</strong> info@computron.edu.pe</p>
+        </div>
+      </article>
 
-    <!-- Asistente Administrativo -->
-    <article class="spec-card" role="region" aria-labelledby="titulo-asist">
-      <img class="media" src="img/asistente-administrativo.jpg" alt="Asistente administrativo" loading="lazy">
-      <div class="body">
-        <h3 id="titulo-asist">Asistente Administrativo</h3>
-        <p>Procesos administrativos, atención al cliente y gestión documental orientada a inserción laboral en empresas e instituciones.</p>
-        <div class="spec-actions">
-          <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-asist" aria-expanded="false">Ver detalles</button>
-          <a class="btn btn-primary btn-sm" href="mallas/asistente-administrativo.pdf" target="_blank" rel="noopener">Descargar malla</a>
+      <!-- Asistente Administrativo -->
+      <article class="spec-card" role="region" aria-labelledby="titulo-asist">
+        <img class="media" src="img/asistente-administrativo.jpg" alt="Asistente administrativo" loading="lazy">
+        <div class="body">
+          <h3 id="titulo-asist">Asistente Administrativo</h3>
+          <p>Procesos administrativos, atención al cliente y gestión documental orientada a inserción laboral.</p>
+          <div class="spec-actions">
+            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-asist">Ver detalles</button>
+            <a class="btn btn-primary btn-sm" href="mallas/asistente-administrativo.pdf" target="_blank">Descargar malla</a>
+          </div>
         </div>
-      </div>
-      <div id="det-asist" class="spec-details collapse">
-        <p><strong>Duración:</strong> Modular / Anual</p>
-        <p><strong>Contacto:</strong> <a href="tel:+51999111468">+51 999 111 468</a></p>
-      </div>
-    </article>
+        <div id="det-asist" class="spec-details collapse">
+          <p><strong>Contacto:</strong> <a href="tel:+51999111468">+51 999 111 468</a></p>
+        </div>
+      </article>
 
-    <!-- Hotelería y Turismo -->
-    <article class="spec-card" role="region" aria-labelledby="titulo-hot">
-      <img class="media" src="img/hoteleria-turismo.jpg" alt="Hotelería y turismo" loading="lazy">
-      <div class="body">
-        <h3 id="titulo-hot">Hotelería y Turismo</h3>
-        <p>Atención hotelera, operaciones turísticas y experiencias prácticas para el sector hospitalidad y turismo local.</p>
-        <div class="spec-actions">
-          <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-hot" aria-expanded="false">Ver detalles</button>
-          <a class="btn btn-primary btn-sm" href="mallas/hoteleria-turismo.pdf" target="_blank" rel="noopener">Descargar malla</a>
+      <!-- Hotelería y Turismo -->
+      <article class="spec-card" role="region" aria-labelledby="titulo-hot">
+        <img class="media" src="img/hoteleria-turismo.jpg" alt="Hotelería y turismo" loading="lazy">
+        <div class="body">
+          <h3 id="titulo-hot">Hotelería y Turismo</h3>
+          <p>Atención hotelera, operaciones y servicios turísticos con prácticas en empresas locales.</p>
+          <div class="spec-actions">
+            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-hot">Ver detalles</button>
+            <a class="btn btn-primary btn-sm" href="mallas/hoteleria-turismo.pdf" target="_blank">Descargar malla</a>
+          </div>
         </div>
-      </div>
-      <div id="det-hot" class="spec-details collapse">
-        <p><strong>Duración:</strong> Modular / Vacacional / Anual</p>
-        <p><strong>Contacto:</strong> <a href="https://facebook.com/COMPUTRON" target="_blank">Facebook — Computron</a></p>
-      </div>
-    </article>
-  </section>
+        <div id="det-hot" class="spec-details collapse">
+          <p><strong>Contacto:</strong> <a href="https://facebook.com/COMPUTRON" target="_blank">Facebook — Computron</a></p>
+        </div>
+      </article>
+    </section>
+  </main>
 
   <!-- MALLAS -->
-  <section id="mallas" class="container" style="max-width:var(--max-width); margin-top:32px;">
+  <section id="mallas" class="container container-max" style="margin-top:28px;">
     <h2>Mallas Curriculares</h2>
-    <p class="text-muted">Descarga las mallas completas por especialidad (PDF).</p>
+    <p class="text-muted">Descarga las mallas completas por especialidad.</p>
     <div class="row g-3">
       <div class="col-md-4"><div class="card p-3"><h5>Operación y Maquinaria Pesada</h5><a href="mallas/operacion-maquinaria.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a></div></div>
       <div class="col-md-4"><div class="card p-3"><h5>Estética y Cosmetología</h5><a href="mallas/estetica-cosmetologia.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a></div></div>
@@ -307,35 +307,55 @@
   </section>
 
   <!-- SEDES -->
-  <section id="sedes" class="container" style="max-width:var(--max-width); margin-top:34px;">
+  <section id="sedes" class="container container-max" style="margin-top:32px;">
     <h2>Sedes</h2>
     <div class="row g-3">
-      <div class="col-md-6"><div class="sede-card"><h5>La Merced — Chanchamayo</h5><p class="text-muted mb-1"><strong>Dirección:</strong> Jr. Lima 109, La Merced 12856</p><p class="mb-1"><strong>Tel/WhatsApp:</strong> <a href="https://wa.me/51999111468" target="_blank">+51 999 111 468</a></p><iframe src="https://www.google.com/maps?q=Jr.+Lima+109+La+Merced+12856&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div></div>
-      <div class="col-md-6"><div class="sede-card"><h5>Villarica</h5><p class="text-muted mb-1"><strong>Dirección:</strong> Jr. Carlos Moali 375, Villa Rica 19300</p><p class="mb-1"><strong>Tel/WhatsApp:</strong> <a href="https://wa.me/51948055547" target="_blank">+51 948 055 547</a></p><iframe src="https://www.google.com/maps?q=Jr.+Carlos+Moali+375+Villa+Rica+19300&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div></div>
+      <div class="col-md-6">
+        <div class="sede-card">
+          <h5>La Merced — Chanchamayo</h5>
+          <p class="text-muted mb-1"><strong>Dirección:</strong> Jr. Lima 109, La Merced 12856</p>
+          <p class="mb-1"><strong>Tel/WhatsApp:</strong> <a href="https://wa.me/51999111468" target="_blank">+51 999 111 468</a></p>
+          <iframe src="https://www.google.com/maps?q=Jr.+Lima+109+La+Merced+12856&output=embed" width="100%" height="220" style="border:0;" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="sede-card">
+          <h5>Villarica</h5>
+          <p class="text-muted mb-1"><strong>Dirección:</strong> Jr. Carlos Moali 375, Villa Rica 19300</p>
+          <p class="mb-1"><strong>Tel/WhatsApp:</strong> <a href="https://wa.me/51948055547" target="_blank">+51 948 055 547</a></p>
+          <iframe src="https://www.google.com/maps?q=Jr.+Carlos+Moali+375+Villa+Rica+19300&output=embed" width="100%" height="220" style="border:0;" loading="lazy"></iframe>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="container" style="max-width:var(--max-width); margin-top:34px;">
+  <section id="faq" class="container container-max" style="margin-top:34px;">
     <h2>Preguntas frecuentes (FAQ)</h2>
     <div class="row g-3 mt-2">
-      <div class="col-md-6"><div class="card p-3"><h6>¿Cómo me inscribo?</h6><p class="text-muted">Envíanos un mensaje por WhatsApp indicando especialidad, sede y modalidad. Nuestro equipo le indicará pasos para matrícula y documentos.</p></div><div class="card p-3 mt-2"><h6>¿Qué modalidades ofrecen?</h6><p class="text-muted">Vacacional, Modular (6 meses, 1 clase semanal) y Anual. Elige según disponibilidad.</p></div></div>
-      <div class="col-md-6"><div class="card p-3"><h6>¿Tienen prácticas o convenios?</h6><p class="text-muted">Sí. Coordinamos prácticas con empresas locales y redes de servicio para facilitar la inserción laboral.</p></div><div class="card p-3 mt-2"><h6>¿Qué documentos necesito?</h6><p class="text-muted">DNI, comprobante de pago (según modalidad) y fotografía reciente. El formulario de inscripción se envía vía WhatsApp.</p></div></div>
+      <div class="col-md-6">
+        <div class="card p-3"><h6>¿Cómo me inscribo?</h6><p class="text-muted">Envíanos un mensaje por WhatsApp indicando especialidad, sede y modalidad. Te indicaremos pasos para matrícula y documentos.</p></div>
+        <div class="card p-3 mt-2"><h6>¿Qué modalidades ofrecen?</h6><p class="text-muted">Vacacional, Modular (6 meses — 1 clase semanal) y Anual.</p></div>
+      </div>
+      <div class="col-md-6">
+        <div class="card p-3"><h6>¿Tienen prácticas o convenios?</h6><p class="text-muted">Sí. Coordinamos prácticas con empresas locales para facilitar inserción laboral.</p></div>
+        <div class="card p-3 mt-2"><h6>¿Qué documentos necesito?</h6><p class="text-muted">DNI, comprobante de pago (según modalidad) y fotografía reciente.</p></div>
+      </div>
     </div>
   </section>
 
   <!-- TESTIMONIOS -->
-  <section class="container testimonials" style="max-width:var(--max-width); margin-top:34px;">
+  <section class="container container-max testimonials" style="margin-top:34px;">
     <h2>Testimonios</h2>
     <div class="row g-3 mt-2">
-      <div class="col-md-4"><div class="card p-3"><blockquote><p class="mb-1">"La formación fue práctica y muy enfocada al trabajo. Conseguí empleo en menos de dos meses."</p><footer class="text-muted">— María L., Asistente Administrativo</footer></blockquote></div></div>
-      <div class="col-md-4"><div class="card p-3"><blockquote><p class="mb-1">"Las clases en fin de semana permitieron capacitarme sin dejar mi trabajo."</p><footer class="text-muted">— Carlos R., Computación</footer></blockquote></div></div>
-      <div class="col-md-4"><div class="card p-3"><blockquote><p class="mb-1">"Excelente acompañamiento desde matrícula hasta prácticas. Recomendado."</p><footer class="text-muted">— Ana P., Estética</footer></blockquote></div></div>
+      <div class="col-md-4"><div class="card p-3"><blockquote><p class="mb-1">"La formación fue práctica y enfocada al trabajo. Conseguí empleo rápido."</p><footer class="text-muted">— María L., Asistente Administrativo</footer></blockquote></div></div>
+      <div class="col-md-4"><div class="card p-3"><blockquote><p class="mb-1">"Clases en fin de semana compatibles con trabajo."</p><footer class="text-muted">— Carlos R., Computación</footer></blockquote></div></div>
+      <div class="col-md-4"><div class="card p-3"><blockquote><p class="mb-1">"Buen acompañamiento desde inscripción hasta prácticas."</p><footer class="text-muted">— Ana P., Estética</footer></blockquote></div></div>
     </div>
   </section>
 
   <!-- CONTACTO -->
-  <section id="contacto" class="container" style="max-width:var(--max-width); margin-top:34px; margin-bottom:36px;">
+  <section id="contacto" class="container container-max" style="margin-top:34px; margin-bottom:36px;">
     <h2>Contacto</h2>
     <div class="row g-3">
       <div class="col-md-6">
@@ -349,29 +369,28 @@
       </div>
       <div class="col-md-6">
         <h6>Procedimiento de contacto</h6>
-        <p class="text-muted">Envía mensaje por WhatsApp con: especialidad, sede y modalidad. Te responderemos con pasos para matrícula y costos.</p>
+        <p class="text-muted">Envía por WhatsApp: especialidad, sede y modalidad. Te responderemos con pasos de matrícula y costos.</p>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="container" style="max-width:var(--max-width); display:flex; justify-content:space-between; align-items:center;">
+    <div class="container container-max" style="display:flex; justify-content:space-between; align-items:center;">
       <div><strong>CETPRO COMPUTRON</strong><br><small class="text-muted">Formación técnica - Inscripciones abiertas</small></div>
       <div style="text-align:right;"><small class="text-muted">© <span id="year"></span> COMPUTRON</small><br><small class="text-muted">Contacto: info@computron.edu.pe</small></div>
     </div>
   </footer>
 
-  <!-- FLOATING CTA & WHATSAPP -->
+  <!-- FLOATING CTA + WHATSAPP -->
   <a class="whatsapp-fab" href="https://wa.me/51999111468" target="_blank" aria-label="WhatsApp"><i class="bi bi-whatsapp" style="font-size:1.25rem;"></i></a>
   <a class="floating-cta" href="#contacto" title="Inscríbete"><i class="bi bi-pencil-square" style="margin-right:.5rem;"></i> Inscríbete</a>
 
   <!-- SCRIPTS -->
   <script>
-    // Año dinámico
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Smooth scroll internal links
+    // Smooth scroll for internal links
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', function(e){
         const target = document.querySelector(this.getAttribute('href'));
@@ -382,30 +401,13 @@
       });
     });
 
-    // Controlar visibilidad CTA: aparece solo cuando el slide vertical (índice 1) está activo
-    (function(){
-      const carouselEl = document.getElementById('homeCarousel');
-      const overlay = carouselEl.querySelector('.banner-cta');
-
-      if(!overlay) return;
-
-      // Estado inicial
-      const activeIdx = Array.from(carouselEl.querySelectorAll('.carousel-item')).findIndex(it => it.classList.contains('active'));
-      overlay.style.opacity = (activeIdx === 1) ? '1' : '0';
-      overlay.style.transition = 'all .28s ease';
-      overlay.style.transform = (activeIdx === 1) ? 'translate(0,0) scale(1)' : 'translate(0,0) scale(.98)';
-
-      carouselEl.addEventListener('slid.bs.carousel', function(event){
-        // event.to -> índice actual (0 o 1)
-        if(event.to === 1){
-          overlay.style.opacity = '1';
-          overlay.style.transform = 'translate(0,0) scale(1)';
-        } else {
-          overlay.style.opacity = '0';
-          overlay.style.transform = 'translate(0,0) scale(.98)';
-        }
-      });
-    })();
+    // Small safeguard: ensure CTA visibility state matches initial slide on load
+    document.addEventListener('DOMContentLoaded', function(){
+      const carousel = document.getElementById('computronHero');
+      const activeIndex = Array.from(carousel.querySelectorAll('.carousel-item')).findIndex(item => item.classList.contains('active'));
+      // Bootstrap will handle slides; CTA visibility is controlled by CSS (.carousel-item.active .hero-cta)
+      // No extra JS required. This block left intentionally minimal as fallback.
+    });
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
