@@ -24,6 +24,7 @@
       --card-radius: 14px;
       --max-width: 1180px;
     }
+
     *{ box-sizing: border-box; }
     body{
       margin:0;
@@ -42,63 +43,50 @@
     .navbar-brand img { height:48px; }
     .nav-link { color: rgba(255,255,255,0.95) !important; }
 
-    /* HERO / CAROUSEL */
+    /* HERO / CAROUSEL: altura determinada por las imágenes (sin extensión hacia abajo) */
     .hero-carousel {
       width:100%;
-      height: clamp(420px, 60vh, 760px); /* suficiente altura para mostrar banners completos */
-      background-color: #0f1724;
       position: relative;
+      background-color: #0f1724;
     }
-
+    .hero-carousel .carousel-inner { width:100%; }
     .hero-carousel .carousel-item {
       position: relative;
-      height: 100%;
       overflow: hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index: 0;
-      transition: opacity .5s ease;
-    }
-
-    .hero-carousel .carousel-item.active {
-      z-index: 1;
-    }
-
-    .hero-carousel .carousel-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* muestra la imagen completa, sin recortar */
-      background-color: #0f1724; /* relleno si hay espacio lateral */
       display: block;
     }
+    /* Las imágenes controlan la altura (height:auto) para que no sobre-extiendan el layout */
+    .hero-carousel .carousel-item img {
+      width: 100%;
+      height: auto;           /* clave: altura natural de la imagen */
+      display: block;
+      object-fit: none;       /* no forzamos recortes */
+      background-color: #0f1724;
+    }
 
-    /* CTA (visible sólo en slide activo que tenga el CTA) */
+    /* CTA (aparece en la slide que lo contiene, abajo-derecha) */
     .hero-cta {
       position: absolute;
-      bottom: 24px;
-      right: 32px;
+      bottom: 18px;
+      right: 20px;
       z-index: 5;
       opacity: 0;
       transform: translateY(6px);
       transition: opacity .28s ease, transform .28s ease;
     }
-    /* cuando la slide es activa, el CTA dentro de ella se muestra */
     .carousel-item.active .hero-cta { opacity:1; transform: translateY(0); }
+    .hero-cta .btn { padding: 0.8rem 1.2rem; font-weight:600; border-radius: 10px; box-shadow:0 10px 30px rgba(3,24,78,0.12); }
 
-    .hero-cta .btn {
-      padding: 0.9rem 1.3rem;
-      font-size: 1rem;
-      font-weight: 600;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(3,24,78,0.12);
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon{
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
     }
 
     .carousel-indicators [data-bs-target] { background-color: rgba(255,255,255,0.9); }
 
-    /* GRID de especialidades y tarjetas */
+    /* Layout principal y tarjetas */
     .container-max { max-width: var(--max-width); margin-left:auto; margin-right:auto; padding-left:16px; padding-right:16px; }
-    .cards-grid { max-width: var(--max-width); margin: 30px auto; display:grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap:20px; padding:0 14px 14px; }
+    .cards-grid { max-width: var(--max-width); margin: 28px auto; display:grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap:20px; padding:0 14px 14px; }
     .spec-card { border-radius: var(--card-radius); overflow: hidden; background: #fff; transition: transform .25s ease, box-shadow .25s ease; box-shadow: 0 8px 30px rgba(3,24,78,0.06); display:flex; flex-direction:column; }
     .spec-card:hover{ transform: translateY(-8px); box-shadow:0 30px 60px rgba(3,24,78,0.08); }
     .spec-card .media{ width:100%; height:170px; object-fit:cover; display:block; }
@@ -117,8 +105,8 @@
     footer{ margin-top:36px; padding:20px 0; background:#f7f9fc; }
 
     @media (max-width: 768px) {
-      .hero-carousel { height: clamp(300px, 50vh, 520px); }
-      .hero-cta { bottom: 16px; right: 16px; }
+      .hero-cta { bottom: 12px; right: 12px; }
+      .cards-grid { margin-top: 18px; }
     }
   </style>
 </head>
@@ -150,7 +138,7 @@
     </div>
   </nav>
 
-  <!-- HERO / CAROUSEL (2 banners horizontales, rotación 5s) -->
+  <!-- HERO / CAROUSEL (las imágenes definen la altura; sin extensión hacia abajo) -->
   <div id="computronHero" class="carousel slide hero-carousel" data-bs-ride="carousel" data-bs-interval="5000" aria-label="Carrusel principal">
     <div class="carousel-inner">
 
@@ -159,7 +147,7 @@
         <img src="img/banner-horizontal.png" alt="Banner principal COMPUTRON" loading="lazy">
       </div>
 
-      <!-- Slide 2 (con CTA abajo a la derecha) -->
+      <!-- Slide 2 (con CTA abajo-derecha) -->
       <div class="carousel-item">
         <img src="img/banner-horizontal-2.png" alt="Segundo banner COMPUTRON" loading="lazy">
         <div class="hero-cta">
@@ -190,7 +178,7 @@
 
   <!-- ESPECIALIDADES -->
   <main class="container-max">
-    <section id="especialidades" class="cards-grid" aria-label="Especialidades" style="margin-top:26px;">
+    <section id="especialidades" class="cards-grid" aria-label="Especialidades">
       <!-- Operación y Maquinaria Pesada -->
       <article class="spec-card" role="region" aria-labelledby="titulo-maq">
         <img class="media" src="img/maquinaria-pesada.jpg" alt="Maquinaria pesada" loading="lazy">
@@ -388,6 +376,7 @@
 
   <!-- SCRIPTS -->
   <script>
+    // Año dinámico
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Smooth scroll for internal links
@@ -400,17 +389,8 @@
         }
       });
     });
-
-    // Small safeguard: ensure CTA visibility state matches initial slide on load
-    document.addEventListener('DOMContentLoaded', function(){
-      const carousel = document.getElementById('computronHero');
-      const activeIndex = Array.from(carousel.querySelectorAll('.carousel-item')).findIndex(item => item.classList.contains('active'));
-      // Bootstrap will handle slides; CTA visibility is controlled by CSS (.carousel-item.active .hero-cta)
-      // No extra JS required. This block left intentionally minimal as fallback.
-    });
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
