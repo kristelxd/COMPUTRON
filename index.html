@@ -25,6 +25,7 @@
       --max-width: 1180px;
     }
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       color:#122028;
@@ -43,37 +44,59 @@
     /* CAROUSEL (hero) */
     .carousel-full{
       width:100%;
-      --hero-height: clamp(420px, 60vh, 760px); /* más altura para menor recorte */
+      --hero-height: clamp(420px, 60vh, 760px);
       position:relative;
       background:#0f1724;
     }
-    .carousel-full .carousel-item{ height:var(--hero-height); display:flex; align-items:center; justify-content:center; }
-    .carousel-full .carousel-item > img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .carousel-full .carousel-item{
+      position: relative;
+      overflow: hidden;
+      height: var(--hero-height);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:0;
+      transition: transform .6s ease;
+    }
+    .carousel-full .carousel-item.active{ z-index:2; }
 
-    /* vertical-slide: evitar recorte del diseño vertical (centra y contiene) */
+    /* imagen por defecto (horizontal) */
+    .carousel-full .carousel-item > img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* slide vertical: contener y centrar la imagen, evitar recorte del diseño vertical */
     .carousel-full .vertical-slide > img{
-      object-fit:contain;      /* evita recorte del diseño vertical */
+      object-fit:contain;
       width:auto;
       max-width:100%;
       height:100%;
       display:block;
       margin-left:auto;
       margin-right:auto;
-      background: linear-gradient(90deg, rgba(15,23,36,0.95), rgba(15,23,36,0.85));
       padding:0 8px;
+      background: linear-gradient(90deg, rgba(15,23,36,0.95), rgba(15,23,36,0.85));
     }
 
-    /* CTA sobre slide vertical */
-    .banner-cta{
-      position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-      z-index:6; display:flex; gap:.6rem; align-items:center; justify-content:center;
+    /* CTA posicionado abajo-derecha dentro de la slide */
+    .banner-cta {
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      z-index: 3;
+      display: flex;
+      gap: .5rem;
+      align-items: center;
     }
-    .banner-cta .btn{ padding:.85rem 1.1rem; font-weight:600; border-radius:8px; }
+    .banner-cta .btn { padding:.7rem 1rem; font-weight:600; border-radius:8px; }
 
-    /* Indicators style */
+    /* indicadores */
     .carousel-indicators [data-bs-target]{ background-color: rgba(255,255,255,0.85); }
 
-    /* cards grid */
+    /* layout de contenido */
     .cards-grid{ max-width:var(--max-width); margin:30px auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; padding:0 14px 14px; }
     .spec-card{ border-radius:var(--card-radius); overflow:hidden; background:#fff; transition:transform .25s ease,box-shadow .25s ease; box-shadow:0 8px 30px rgba(3,24,78,0.06); display:flex; flex-direction:column; }
     .spec-card:hover{ transform:translateY(-10px); box-shadow:0 30px 60px rgba(3,24,78,0.08); }
@@ -87,7 +110,7 @@
     #mallas .card{ border-radius:12px; box-shadow:0 8px 20px rgba(3,24,78,0.04); }
     .sede-card{ border-radius:12px; padding:14px; background:#fff; box-shadow:0 10px 30px rgba(3,24,78,0.04); }
 
-    /* CTA floating & whatsapp */
+    /* floating CTA & whatsapp */
     .floating-cta{ position:fixed; right:18px; bottom:18px; z-index:1100; border-radius:999px; display:flex; gap:.6rem; align-items:center; padding:10px 14px; background:linear-gradient(90deg,var(--brand-red),#e23a45); color:white; box-shadow:0 20px 50px rgba(215,38,61,0.18); text-decoration:none; font-weight:600; }
     .whatsapp-fab{ position:fixed; right:18px; bottom:86px; z-index:1100; background:#25D366; color:white; width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 16px 36px rgba(0,0,0,0.12); text-decoration:none; }
 
@@ -95,7 +118,7 @@
 
     @media(max-width:980px){
       .carousel-full{ --hero-height: clamp(320px, 50vh, 520px); }
-      .banner-cta{ transform:translate(-50%,-45%); }
+      .banner-cta{ right:12px; bottom:12px; }
     }
   </style>
 </head>
@@ -126,19 +149,19 @@
     </div>
   </nav>
 
-  <!-- CAROUSEL FULL-WIDTH: 2 banners a 5s -->
+  <!-- CAROUSEL CORREGIDO: 2 banners, rotación 5s, CTA abajo-derecha en slide 2 -->
   <div id="homeCarousel" class="carousel slide carousel-full" data-bs-ride="carousel" data-bs-interval="5000" aria-label="Banner rotativo">
     <div class="carousel-inner">
-      <!-- Slide 1: horizontal -->
+      <!-- slide 1 horizontal -->
       <div class="carousel-item active">
         <img src="img/banner-horizontal.png" alt="Banner principal COMPUTRON" loading="lazy">
       </div>
 
-      <!-- Slide 2: vertical (centrado, no recorta diseño) -->
+      <!-- slide 2 vertical con CTA abajo-derecha -->
       <div class="carousel-item vertical-slide">
         <img src="img/banner-vertical.png" alt="Banner secundario COMPUTRON" loading="lazy">
-        <div class="banner-cta" aria-hidden="false">
-          <!-- CTA abre WhatsApp directamente -->
+        <div class="banner-cta" aria-hidden="true">
+          <!-- CTA abre WhatsApp -->
           <a href="https://wa.me/51999111468" class="btn btn-dark btn-lg" aria-label="Inscríbete por WhatsApp">Inscríbete</a>
         </div>
       </div>
@@ -296,14 +319,8 @@
   <section id="faq" class="container" style="max-width:var(--max-width); margin-top:34px;">
     <h2>Preguntas frecuentes (FAQ)</h2>
     <div class="row g-3 mt-2">
-      <div class="col-md-6">
-        <div class="card p-3"><h6>¿Cómo me inscribo?</h6><p class="text-muted">Envíanos un mensaje por WhatsApp indicando especialidad, sede y modalidad. Nuestro equipo le indicará pasos para matrícula y documentos.</p></div>
-        <div class="card p-3 mt-2"><h6>¿Qué modalidades ofrecen?</h6><p class="text-muted">Vacacional, Modular (6 meses, 1 clase semanal) y Anual. Elige según disponibilidad.</p></div>
-      </div>
-      <div class="col-md-6">
-        <div class="card p-3"><h6>¿Tienen prácticas o convenios?</h6><p class="text-muted">Sí. Coordinamos prácticas con empresas locales y redes de servicio para facilitar la inserción laboral.</p></div>
-        <div class="card p-3 mt-2"><h6>¿Qué documentos necesito?</h6><p class="text-muted">DNI, comprobante de pago (según modalidad) y fotografía reciente. El formulario de inscripción se envía vía WhatsApp.</p></div>
-      </div>
+      <div class="col-md-6"><div class="card p-3"><h6>¿Cómo me inscribo?</h6><p class="text-muted">Envíanos un mensaje por WhatsApp indicando especialidad, sede y modalidad. Nuestro equipo le indicará pasos para matrícula y documentos.</p></div><div class="card p-3 mt-2"><h6>¿Qué modalidades ofrecen?</h6><p class="text-muted">Vacacional, Modular (6 meses, 1 clase semanal) y Anual. Elige según disponibilidad.</p></div></div>
+      <div class="col-md-6"><div class="card p-3"><h6>¿Tienen prácticas o convenios?</h6><p class="text-muted">Sí. Coordinamos prácticas con empresas locales y redes de servicio para facilitar la inserción laboral.</p></div><div class="card p-3 mt-2"><h6>¿Qué documentos necesito?</h6><p class="text-muted">DNI, comprobante de pago (según modalidad) y fotografía reciente. El formulario de inscripción se envía vía WhatsApp.</p></div></div>
     </div>
   </section>
 
@@ -365,19 +382,28 @@
       });
     });
 
-    // Mostrar/ocultar CTA en slide 2
+    // Controlar visibilidad CTA: aparece solo cuando el slide vertical (índice 1) está activo
     (function(){
       const carouselEl = document.getElementById('homeCarousel');
+      const overlay = carouselEl.querySelector('.banner-cta');
+
+      if(!overlay) return;
+
+      // Estado inicial
+      const activeIdx = Array.from(carouselEl.querySelectorAll('.carousel-item')).findIndex(it => it.classList.contains('active'));
+      overlay.style.opacity = (activeIdx === 1) ? '1' : '0';
+      overlay.style.transition = 'all .28s ease';
+      overlay.style.transform = (activeIdx === 1) ? 'translate(0,0) scale(1)' : 'translate(0,0) scale(.98)';
+
       carouselEl.addEventListener('slid.bs.carousel', function(event){
-        const overlay = document.querySelector('.banner-cta');
-        if(!overlay) return;
-        overlay.style.opacity = (event.to === 1) ? '1' : '0';
-        overlay.style.transform = (event.to === 1) ? 'translate(-50%, -50%) scale(1)' : 'translate(-50%, -50%) scale(.98)';
-        overlay.style.transition = 'all .28s ease';
-      });
-      document.addEventListener('DOMContentLoaded', ()=>{
-        const overlay = document.querySelector('.banner-cta');
-        if(overlay){ overlay.style.opacity = '0'; overlay.style.transition = 'all .28s ease'; }
+        // event.to -> índice actual (0 o 1)
+        if(event.to === 1){
+          overlay.style.opacity = '1';
+          overlay.style.transform = 'translate(0,0) scale(1)';
+        } else {
+          overlay.style.opacity = '0';
+          overlay.style.transform = 'translate(0,0) scale(.98)';
+        }
       });
     })();
   </script>
@@ -385,3 +411,4 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
