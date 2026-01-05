@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>CETPRO COMPUTRON — Formación técnica</title>
-  <meta name="description" content="CETPRO COMPUTRON | Especialidades técnicas: Operación y Maquinaria Pesada, Estética y Cosmetología, Barbería, Computación e Informática, Asistente Administrativo, Hotelería y Turismo. Modalidades: Vacacional, Modular (6 meses), Anual.">
+  <meta name="description" content="CETPRO COMPUTRON — Especialidades técnicas: Operación y Maquinaria Pesada, Estética y Cosmetología, Barbería, Computación e Informática, Asistente Administrativo, Hotelería y Turismo.">
   <meta property="og:title" content="CETPRO COMPUTRON — Formación técnica">
   <meta property="og:description" content="Programas modulares, vacacionales y anuales orientados a empleabilidad. Inscripciones abiertas.">
   <meta property="og:image" content="img/banner-horizontal.png">
@@ -24,103 +24,82 @@
       --card-radius: 14px;
       --max-width: 1180px;
     }
-    * { box-sizing: border-box; }
-    body {
+    *{box-sizing:border-box}
+    body{
       font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      color: #122028;
-      background: linear-gradient(180deg,#f7f9fc 0%, #ffffff 100%);
+      color:#122028;
+      background:linear-gradient(180deg,#f7f9fc 0%, #ffffff 100%);
       -webkit-font-smoothing:antialiased;
+      margin:0;
+      padding:0;
     }
 
     /* NAV */
-    .navbar {
-      background: linear-gradient(90deg,var(--brand-blue), var(--brand-blue-2));
-      box-shadow: 0 6px 20px rgba(3,24,78,0.08);
-    }
-    .navbar-brand { display:flex; gap:.8rem; align-items:center; }
-    .navbar-brand img { height:48px; }
-    .nav-link { color: rgba(255,255,255,0.95) !important; }
-    .nav-link:hover { text-decoration: underline; }
+    .navbar{ background:linear-gradient(90deg,var(--brand-blue), var(--brand-blue-2)); box-shadow:0 6px 20px rgba(3,24,78,0.08); }
+    .navbar-brand{ display:flex; gap:.8rem; align-items:center; }
+    .navbar-brand img{ height:48px; }
+    .nav-link{ color:rgba(255,255,255,0.95) !important; }
 
-    /* CAROUSEL (full-width hero rotativo) */
-    .carousel-full {
-      width: 100%;
-      margin: 0;
-      --hero-height: clamp(300px, 44vh, 520px);
-      position: relative;
+    /* CAROUSEL (hero) */
+    .carousel-full{
+      width:100%;
+      --hero-height: clamp(420px, 60vh, 760px); /* más altura para menor recorte */
+      position:relative;
+      background:#0f1724;
     }
-    .carousel-full .carousel-item {
-      height: var(--hero-height);
-    }
-    .carousel-full .carousel-item > img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    /* CTA overlay sólo para slide 2 (vertical) */
-    .banner-cta {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 5;
-      display:flex;
-      gap:.6rem;
-      align-items:center;
-      justify-content:center;
-    }
-    .banner-cta .btn {
-      padding:.85rem 1.1rem;
-      font-weight:600;
-      border-radius:8px;
-      box-shadow: 0 10px 30px rgba(3,24,78,0.12);
-    }
-    /* rest of layout */
-    .cards-grid {
-      max-width: var(--max-width);
-      margin: 30px auto;
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
-      gap: 20px;
-      padding: 0 14px 14px;
-    }
-    .spec-card {
-      border-radius: var(--card-radius);
-      overflow: hidden;
-      background: #fff;
-      transition: transform .25s ease, box-shadow .25s ease;
-      box-shadow: 0 8px 30px rgba(3,24,78,0.06);
-      display:flex;
-      flex-direction:column;
-    }
-    .spec-card:hover { transform: translateY(-10px); box-shadow:0 30px 60px rgba(3,24,78,0.08); }
-    .spec-card .media { width:100%; height:170px; object-fit:cover; display:block; }
-    .spec-card .body { padding:16px; flex:1; display:flex; flex-direction:column; gap:8px; }
-    .spec-card h3 { margin:0; color:var(--brand-blue); font-size:1.05rem; }
-    .spec-card p { margin:0; color:var(--muted); font-size:.95rem; }
-    .spec-actions { margin-top:auto; display:flex; gap:.6rem; align-items:center; }
+    .carousel-full .carousel-item{ height:var(--hero-height); display:flex; align-items:center; justify-content:center; }
+    .carousel-full .carousel-item > img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-    .spec-details { background: linear-gradient(180deg, rgba(0,0,0,0.01), rgba(0,0,0,0.003)); padding:14px; border-top:1px solid rgba(0,0,0,0.04); }
-    #mallas .card { border-radius:12px; box-shadow: 0 8px 20px rgba(3,24,78,0.04); }
-    .sede-card { border-radius:12px; padding:14px; background: #fff; box-shadow:0 10px 30px rgba(3,24,78,0.04); }
+    /* vertical-slide: evitar recorte del diseño vertical (centra y contiene) */
+    .carousel-full .vertical-slide > img{
+      object-fit:contain;      /* evita recorte del diseño vertical */
+      width:auto;
+      max-width:100%;
+      height:100%;
+      display:block;
+      margin-left:auto;
+      margin-right:auto;
+      background: linear-gradient(90deg, rgba(15,23,36,0.95), rgba(15,23,36,0.85));
+      padding:0 8px;
+    }
 
-    /* Floating CTA & WhatsApp */
-    .floating-cta { position: fixed; right: 18px; bottom: 18px; z-index: 1100; border-radius: 999px; display:flex; gap:.6rem; align-items:center; padding:10px 14px; background: linear-gradient(90deg,var(--brand-red), #e23a45); color:white; box-shadow:0 20px 50px rgba(215,38,61,0.18); text-decoration:none; font-weight:600; }
-    .whatsapp-fab { position: fixed; right: 18px; bottom: 86px; z-index:1100; background:#25D366; color:white; width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 16px 36px rgba(0,0,0,0.12); text-decoration:none; }
+    /* CTA sobre slide vertical */
+    .banner-cta{
+      position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+      z-index:6; display:flex; gap:.6rem; align-items:center; justify-content:center;
+    }
+    .banner-cta .btn{ padding:.85rem 1.1rem; font-weight:600; border-radius:8px; }
 
-    /* footer, faq, testimonials minimal */
-    footer { margin-top:36px; padding:20px 0; background: #f7f9fc; }
-    .faq q { font-style: italic; }
-    .testimonials .card { border-radius:12px; padding:18px; background:#fff; box-shadow:0 12px 30px rgba(3,24,78,0.06); }
+    /* Indicators style */
+    .carousel-indicators [data-bs-target]{ background-color: rgba(255,255,255,0.85); }
+
+    /* cards grid */
+    .cards-grid{ max-width:var(--max-width); margin:30px auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; padding:0 14px 14px; }
+    .spec-card{ border-radius:var(--card-radius); overflow:hidden; background:#fff; transition:transform .25s ease,box-shadow .25s ease; box-shadow:0 8px 30px rgba(3,24,78,0.06); display:flex; flex-direction:column; }
+    .spec-card:hover{ transform:translateY(-10px); box-shadow:0 30px 60px rgba(3,24,78,0.08); }
+    .spec-card .media{ width:100%; height:170px; object-fit:cover; display:block; }
+    .spec-card .body{ padding:16px; flex:1; display:flex; flex-direction:column; gap:8px; }
+    .spec-card h3{ margin:0; color:var(--brand-blue); font-size:1.05rem; }
+    .spec-card p{ margin:0; color:var(--muted); font-size:.95rem; }
+    .spec-actions{ margin-top:auto; display:flex; gap:.6rem; align-items:center; }
+    .spec-details{ background:linear-gradient(180deg, rgba(0,0,0,0.01), rgba(0,0,0,0.003)); padding:14px; border-top:1px solid rgba(0,0,0,0.04); }
+
+    #mallas .card{ border-radius:12px; box-shadow:0 8px 20px rgba(3,24,78,0.04); }
+    .sede-card{ border-radius:12px; padding:14px; background:#fff; box-shadow:0 10px 30px rgba(3,24,78,0.04); }
+
+    /* CTA floating & whatsapp */
+    .floating-cta{ position:fixed; right:18px; bottom:18px; z-index:1100; border-radius:999px; display:flex; gap:.6rem; align-items:center; padding:10px 14px; background:linear-gradient(90deg,var(--brand-red),#e23a45); color:white; box-shadow:0 20px 50px rgba(215,38,61,0.18); text-decoration:none; font-weight:600; }
+    .whatsapp-fab{ position:fixed; right:18px; bottom:86px; z-index:1100; background:#25D366; color:white; width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 16px 36px rgba(0,0,0,0.12); text-decoration:none; }
+
+    footer{ margin-top:36px; padding:20px 0; background:#f7f9fc; }
 
     @media(max-width:980px){
-      .banner-cta { left: 50%; transform: translate(-50%, -40%); }
+      .carousel-full{ --hero-height: clamp(320px, 50vh, 520px); }
+      .banner-cta{ transform:translate(-50%,-45%); }
     }
   </style>
 </head>
 <body>
-
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container" style="max-width:var(--max-width);">
@@ -147,27 +126,25 @@
     </div>
   </nav>
 
-  <!-- CAROUSEL FULL-WIDTH: 2 banners, rotación 5s -->
+  <!-- CAROUSEL FULL-WIDTH: 2 banners a 5s -->
   <div id="homeCarousel" class="carousel slide carousel-full" data-bs-ride="carousel" data-bs-interval="5000" aria-label="Banner rotativo">
     <div class="carousel-inner">
-
-      <!-- Slide 1: banner horizontal -->
+      <!-- Slide 1: horizontal -->
       <div class="carousel-item active">
         <img src="img/banner-horizontal.png" alt="Banner principal COMPUTRON" loading="lazy">
       </div>
 
-      <!-- Slide 2: banner vertical con CTA overlay -->
-      <div class="carousel-item">
+      <!-- Slide 2: vertical (centrado, no recorta diseño) -->
+      <div class="carousel-item vertical-slide">
         <img src="img/banner-vertical.png" alt="Banner secundario COMPUTRON" loading="lazy">
-        <!-- CTA centrado sobre el banner vertical (aparece solo en este slide) -->
-        <div class="banner-cta">
-          <a href="#contacto" class="btn btn-lg btn-dark" role="button" aria-label="Inscríbete">Inscríbete</a>
+        <div class="banner-cta" aria-hidden="false">
+          <!-- CTA abre WhatsApp directamente -->
+          <a href="https://wa.me/51999111468" class="btn btn-dark btn-lg" aria-label="Inscríbete por WhatsApp">Inscríbete</a>
         </div>
       </div>
-
     </div>
 
-    <!-- Controls -->
+    <!-- controls -->
     <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev" aria-label="Anterior">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     </button>
@@ -175,7 +152,7 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
     </button>
 
-    <!-- Indicators -->
+    <!-- indicators -->
     <div class="position-absolute w-100" style="bottom:12px; left:0; text-align:center; z-index:5;">
       <div class="d-inline-block bg-black bg-opacity-25 rounded-pill py-1 px-2">
         <ol class="carousel-indicators mb-0" style="position:static;">
@@ -186,14 +163,14 @@
     </div>
   </div>
 
-  <!-- ESPECIALIDADES (grid con tarjetas y textos formales) -->
+  <!-- ESPECIALIDADES -->
   <section id="especialidades" class="cards-grid" aria-label="Especialidades">
-    <!-- Tarjeta Operación y Maquinaria Pesada -->
+    <!-- Operación y Maquinaria Pesada -->
     <article class="spec-card" role="region" aria-labelledby="titulo-maq">
       <img class="media" src="img/maquinaria-pesada.jpg" alt="Maquinaria pesada" loading="lazy">
       <div class="body">
         <h3 id="titulo-maq">Operación y Maquinaria Pesada</h3>
-        <p>Programa diseñado para formar operadores calificados en el manejo seguro y eficiente de maquinaria pesada. El plan de estudio integra teoría técnica con prácticas en campo, normativa de seguridad y gestión de mantenimiento predictivo, con énfasis en la competitividad laboral.</p>
+        <p>Programa diseñado para formar operadores calificados en el manejo seguro y eficiente de maquinaria pesada. El plan integra teoría técnica con prácticas en campo, normativa de seguridad y mantenimiento predictivo.</p>
         <div class="spec-actions">
           <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-maq" aria-expanded="false">Ver detalles</button>
           <a class="btn btn-primary btn-sm" href="mallas/operacion-maquinaria.pdf" target="_blank" rel="noopener">Descargar malla</a>
@@ -206,12 +183,12 @@
       </div>
     </article>
 
-    <!-- Estética -->
+    <!-- Estética y Cosmetología -->
     <article class="spec-card" role="region" aria-labelledby="titulo-est">
       <img class="media" src="img/estetica-cosmetologia.jpg" alt="Estética y cosmetología" loading="lazy">
       <div class="body">
         <h3 id="titulo-est">Estética y Cosmetología</h3>
-        <p>Formación integral en técnicas estéticas, dermocosmética y gestión de servicios de belleza. El currículo prioriza prácticas en cabina, protocolos de seguridad e introducción a la gestión comercial del servicio para promover emprendimientos sostenibles.</p>
+        <p>Formación integral en técnicas estéticas, dermocosmética y gestión de servicios de belleza. El currículo prioriza prácticas en cabina y gestión comercial del servicio.</p>
         <div class="spec-actions">
           <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-est" aria-expanded="false">Ver detalles</button>
           <a class="btn btn-primary btn-sm" href="mallas/estetica-cosmetologia.pdf" target="_blank" rel="noopener">Descargar malla</a>
@@ -219,7 +196,6 @@
       </div>
       <div id="det-est" class="spec-details collapse">
         <p><strong>Duración:</strong> Modular / Vacacional / Anual</p>
-        <p><strong>Horarios (Modular):</strong> 1 clase por semana — Sábado o Domingo — 08:00–12:00 o 13:00–17:00</p>
         <p><strong>Instagram:</strong> <a href="https://instagram.com/COMPUTRON" target="_blank">@COMPUTRON</a></p>
       </div>
     </article>
@@ -229,7 +205,7 @@
       <img class="media" src="img/barberia.jpg" alt="Barbería" loading="lazy">
       <div class="body">
         <h3 id="titulo-barb">Barbería</h3>
-        <p>Especialidad orientada a técnicas contemporáneas de corte, diseño de barba y experiencia de cliente. Incluye formación en higiene y bioseguridad, atención comercial y gestión básica para emprendedores del sector.</p>
+        <p>Técnicas contemporáneas de corte y diseño de barba, higiene y atención comercial con orientación a emprendimiento.</p>
         <div class="spec-actions">
           <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-barb" aria-expanded="false">Ver detalles</button>
           <a class="btn btn-primary btn-sm" href="mallas/barberia.pdf" target="_blank" rel="noopener">Descargar malla</a>
@@ -241,12 +217,12 @@
       </div>
     </article>
 
-    <!-- Computación -->
+    <!-- Computación e Informática -->
     <article class="spec-card" role="region" aria-labelledby="titulo-comp">
       <img class="media" src="img/computacion-informatica.jpg" alt="Computación e informática" loading="lazy">
       <div class="body">
         <h3 id="titulo-comp">Computación e Informática</h3>
-        <p>Programa técnico en ofimática, mantenimiento de equipos, redes básicas y programación elemental. Incluye proyectos aplicados para el desarrollo de competencias buscadas por empleadores del sector tecnológico y de servicios.</p>
+        <p>Ofimática, mantenimiento de equipos, redes y programación elemental con proyectos aplicados y orientación a empleo.</p>
         <div class="spec-actions">
           <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-comp" aria-expanded="false">Ver detalles</button>
           <a class="btn btn-primary btn-sm" href="mallas/computacion-informatica.pdf" target="_blank" rel="noopener">Descargar malla</a>
@@ -254,7 +230,6 @@
       </div>
       <div id="det-comp" class="spec-details collapse">
         <p><strong>Duración:</strong> Modular (6 meses) / Anual</p>
-        <p><strong>Horarios (Modular):</strong> 1 clase por semana — Sábado o Domingo — 08:00–12:00 o 13:00–17:00</p>
         <p><strong>Email:</strong> info@computron.edu.pe</p>
       </div>
     </article>
@@ -264,7 +239,7 @@
       <img class="media" src="img/asistente-administrativo.jpg" alt="Asistente administrativo" loading="lazy">
       <div class="body">
         <h3 id="titulo-asist">Asistente Administrativo</h3>
-        <p>Formación en procesos administrativos, atención al cliente, gestión documental y herramientas ofimáticas, orientada a la inserción laboral en pymes, instituciones públicas y oficinas comerciales.</p>
+        <p>Procesos administrativos, atención al cliente y gestión documental orientada a inserción laboral en empresas e instituciones.</p>
         <div class="spec-actions">
           <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-asist" aria-expanded="false">Ver detalles</button>
           <a class="btn btn-primary btn-sm" href="mallas/asistente-administrativo.pdf" target="_blank" rel="noopener">Descargar malla</a>
@@ -281,7 +256,7 @@
       <img class="media" src="img/hoteleria-turismo.jpg" alt="Hotelería y turismo" loading="lazy">
       <div class="body">
         <h3 id="titulo-hot">Hotelería y Turismo</h3>
-        <p>Formación práctica en atención hotelera, servicios turísticos y operaciones, con prácticas en empresas locales y preparación para roles operativos en el sector turismo y hospitalidad.</p>
+        <p>Atención hotelera, operaciones turísticas y experiencias prácticas para el sector hospitalidad y turismo local.</p>
         <div class="spec-actions">
           <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-hot" aria-expanded="false">Ver detalles</button>
           <a class="btn btn-primary btn-sm" href="mallas/hoteleria-turismo.pdf" target="_blank" rel="noopener">Descargar malla</a>
@@ -299,71 +274,21 @@
     <h2>Mallas Curriculares</h2>
     <p class="text-muted">Descarga las mallas completas por especialidad (PDF).</p>
     <div class="row g-3">
-      <div class="col-md-4">
-        <div class="card p-3">
-          <h5>Operación y Maquinaria Pesada</h5>
-          <a href="mallas/operacion-maquinaria.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card p-3">
-          <h5>Estética y Cosmetología</h5>
-          <a href="mallas/estetica-cosmetologia.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card p-3">
-          <h5>Barbería</h5>
-          <a href="mallas/barberia.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card p-3">
-          <h5>Computación e Informática</h5>
-          <a href="mallas/computacion-informatica.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card p-3">
-          <h5>Asistente Administrativo</h5>
-          <a href="mallas/asistente-administrativo.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card p-3">
-          <h5>Hotelería y Turismo</h5>
-          <a href="mallas/hoteleria-turismo.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a>
-        </div>
-      </div>
+      <div class="col-md-4"><div class="card p-3"><h5>Operación y Maquinaria Pesada</h5><a href="mallas/operacion-maquinaria.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a></div></div>
+      <div class="col-md-4"><div class="card p-3"><h5>Estética y Cosmetología</h5><a href="mallas/estetica-cosmetologia.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a></div></div>
+      <div class="col-md-4"><div class="card p-3"><h5>Barbería</h5><a href="mallas/barberia.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a></div></div>
+      <div class="col-md-4"><div class="card p-3"><h5>Computación e Informática</h5><a href="mallas/computacion-informatica.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a></div></div>
+      <div class="col-md-4"><div class="card p-3"><h5>Asistente Administrativo</h5><a href="mallas/asistente-administrativo.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a></div></div>
+      <div class="col-md-4"><div class="card p-3"><h5>Hotelería y Turismo</h5><a href="mallas/hoteleria-turismo.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a></div></div>
     </div>
   </section>
 
-  <!-- SEDES con Google Maps embed -->
+  <!-- SEDES -->
   <section id="sedes" class="container" style="max-width:var(--max-width); margin-top:34px;">
     <h2>Sedes</h2>
     <div class="row g-3">
-      <div class="col-md-6">
-        <div class="sede-card">
-          <h5>La Merced — Chanchamayo</h5>
-          <p class="text-muted mb-1"><strong>Dirección:</strong> Jr. Lima 109, La Merced 12856</p>
-          <p class="mb-1"><strong>Tel/WhatsApp:</strong> <a href="https://wa.me/51999111468" target="_blank">+51 999 111 468</a></p>
-          <div style="margin-top:10px;">
-            <iframe src="https://www.google.com/maps?q=Jr.+Lima+109+La+Merced+12856&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="sede-card">
-          <h5>Villarica</h5>
-          <p class="text-muted mb-1"><strong>Dirección:</strong> Jr. Carlos Moali 375, Villa Rica 19300</p>
-          <p class="mb-1"><strong>Tel/WhatsApp:</strong> <a href="https://wa.me/51948055547" target="_blank">+51 948 055 547</a></p>
-          <div style="margin-top:10px;">
-            <iframe src="https://www.google.com/maps?q=Jr.+Carlos+Moali+375+Villa+Rica+19300&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-          </div>
-        </div>
-      </div>
+      <div class="col-md-6"><div class="sede-card"><h5>La Merced — Chanchamayo</h5><p class="text-muted mb-1"><strong>Dirección:</strong> Jr. Lima 109, La Merced 12856</p><p class="mb-1"><strong>Tel/WhatsApp:</strong> <a href="https://wa.me/51999111468" target="_blank">+51 999 111 468</a></p><iframe src="https://www.google.com/maps?q=Jr.+Lima+109+La+Merced+12856&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div></div>
+      <div class="col-md-6"><div class="sede-card"><h5>Villarica</h5><p class="text-muted mb-1"><strong>Dirección:</strong> Jr. Carlos Moali 375, Villa Rica 19300</p><p class="mb-1"><strong>Tel/WhatsApp:</strong> <a href="https://wa.me/51948055547" target="_blank">+51 948 055 547</a></p><iframe src="https://www.google.com/maps?q=Jr.+Carlos+Moali+375+Villa+Rica+19300&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div></div>
     </div>
   </section>
 
@@ -372,24 +297,12 @@
     <h2>Preguntas frecuentes (FAQ)</h2>
     <div class="row g-3 mt-2">
       <div class="col-md-6">
-        <div class="card p-3">
-          <h6>¿Cómo me inscribo?</h6>
-          <p class="text-muted">Envíanos un mensaje por WhatsApp indicando especialidad, sede y modalidad. Nuestro equipo le indicará los pasos para matrícula, documentación y fechas de inicio.</p>
-        </div>
-        <div class="card p-3 mt-2">
-          <h6>¿Qué modalidades ofrecen?</h6>
-          <p class="text-muted">Ofrecemos tres modalidades: Vacacional (cursos cortos), Modular (6 meses, 1 clase semanal) y Anual (programa intensivo). Elige la opción que mejor se adapte a tu disponibilidad.</p>
-        </div>
+        <div class="card p-3"><h6>¿Cómo me inscribo?</h6><p class="text-muted">Envíanos un mensaje por WhatsApp indicando especialidad, sede y modalidad. Nuestro equipo le indicará pasos para matrícula y documentos.</p></div>
+        <div class="card p-3 mt-2"><h6>¿Qué modalidades ofrecen?</h6><p class="text-muted">Vacacional, Modular (6 meses, 1 clase semanal) y Anual. Elige según disponibilidad.</p></div>
       </div>
       <div class="col-md-6">
-        <div class="card p-3">
-          <h6>¿Tienen prácticas o convenios laborales?</h6>
-          <p class="text-muted">Sí. Trabajamos con empresas locales y redes de servicio para facilitar prácticas y oportunidades de inserción laboral a nuestros egresados.</p>
-        </div>
-        <div class="card p-3 mt-2">
-          <h6>¿Qué documentos necesito para matricularme?</h6>
-          <p class="text-muted">Documento de identidad, comprobante de pago (según modalidad), fotografía reciente y formulario de inscripción que le enviaremos por WhatsApp tras contactar.</p>
-        </div>
+        <div class="card p-3"><h6>¿Tienen prácticas o convenios?</h6><p class="text-muted">Sí. Coordinamos prácticas con empresas locales y redes de servicio para facilitar la inserción laboral.</p></div>
+        <div class="card p-3 mt-2"><h6>¿Qué documentos necesito?</h6><p class="text-muted">DNI, comprobante de pago (según modalidad) y fotografía reciente. El formulario de inscripción se envía vía WhatsApp.</p></div>
       </div>
     </div>
   </section>
@@ -398,30 +311,9 @@
   <section class="container testimonials" style="max-width:var(--max-width); margin-top:34px;">
     <h2>Testimonios</h2>
     <div class="row g-3 mt-2">
-      <div class="col-md-4">
-        <div class="card p-3">
-          <blockquote>
-            <p class="mb-1">"La formación fue práctica y muy enfocada al trabajo. Gracias a COMPUTRON conseguí empleo en menos de dos meses."</p>
-            <footer class="text-muted">— María López, egresada (Asistente Administrativo)</footer>
-          </blockquote>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card p-3">
-          <blockquote>
-            <p class="mb-1">"Las clases en fin de semana permitieron que me capacite sin dejar mi trabajo. Profesores muy competentes."</p>
-            <footer class="text-muted">— Carlos R., egresado (Computación e Informática)</footer>
-          </blockquote>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card p-3">
-          <blockquote>
-            <p class="mb-1">"Excelente acompañamiento del equipo desde la matrícula hasta las prácticas. Recomendado para quienes quieren entrar rápido al mercado laboral."</p>
-            <footer class="text-muted">— Ana P., egresada (Estética y Cosmetología)</footer>
-          </blockquote>
-        </div>
-      </div>
+      <div class="col-md-4"><div class="card p-3"><blockquote><p class="mb-1">"La formación fue práctica y muy enfocada al trabajo. Conseguí empleo en menos de dos meses."</p><footer class="text-muted">— María L., Asistente Administrativo</footer></blockquote></div></div>
+      <div class="col-md-4"><div class="card p-3"><blockquote><p class="mb-1">"Las clases en fin de semana permitieron capacitarme sin dejar mi trabajo."</p><footer class="text-muted">— Carlos R., Computación</footer></blockquote></div></div>
+      <div class="col-md-4"><div class="card p-3"><blockquote><p class="mb-1">"Excelente acompañamiento desde matrícula hasta prácticas. Recomendado."</p><footer class="text-muted">— Ana P., Estética</footer></blockquote></div></div>
     </div>
   </section>
 
@@ -430,7 +322,7 @@
     <h2>Contacto</h2>
     <div class="row g-3">
       <div class="col-md-6">
-        <p>Escríbenos por WhatsApp o síguenos en nuestras redes sociales. Respuesta rápida y personalizada.</p>
+        <p>Escríbenos por WhatsApp o síguenos en redes. Respuesta rápida y personalizada.</p>
         <div class="mb-3">
           <a class="btn btn-success me-2" href="https://wa.me/51999111468" target="_blank"><i class="bi bi-whatsapp"></i> +51 999 111 468</a>
           <a class="btn btn-success me-2" href="https://wa.me/51999111485" target="_blank"><i class="bi bi-whatsapp"></i> +51 999 111 485</a>
@@ -438,16 +330,9 @@
         </div>
         <p>Redes: <a href="https://instagram.com/COMPUTRON" target="_blank"><i class="bi bi-instagram"></i> Instagram</a> • <a href="https://facebook.com/COMPUTRON" target="_blank"><i class="bi bi-facebook"></i> Facebook</a></p>
       </div>
-
       <div class="col-md-6">
         <h6>Procedimiento de contacto</h6>
-        <p class="text-muted">Para inscripciones y consultas envía un mensaje por WhatsApp indicando:</p>
-        <ol>
-          <li>Especialidad de interés</li>
-          <li>Sede preferida: La Merced — Chanchamayo o Villarica</li>
-          <li>Modalidad: Vacacional / Modular / Anual</li>
-        </ol>
-        <p class="text-muted">Nuestro equipo responderá con pasos de matrícula, costos y la documentación requerida.</p>
+        <p class="text-muted">Envía mensaje por WhatsApp con: especialidad, sede y modalidad. Te responderemos con pasos para matrícula y costos.</p>
       </div>
     </div>
   </section>
@@ -455,32 +340,21 @@
   <!-- FOOTER -->
   <footer>
     <div class="container" style="max-width:var(--max-width); display:flex; justify-content:space-between; align-items:center;">
-      <div>
-        <strong>CETPRO COMPUTRON</strong><br>
-        <small class="text-muted">Formación técnica - Inscripciones abiertas</small>
-      </div>
-      <div style="text-align:right;">
-        <small class="text-muted">© <span id="year"></span> COMPUTRON</small><br>
-        <small class="text-muted">Contacto: info@computron.edu.pe</small>
-      </div>
+      <div><strong>CETPRO COMPUTRON</strong><br><small class="text-muted">Formación técnica - Inscripciones abiertas</small></div>
+      <div style="text-align:right;"><small class="text-muted">© <span id="year"></span> COMPUTRON</small><br><small class="text-muted">Contacto: info@computron.edu.pe</small></div>
     </div>
   </footer>
 
-  <!-- FLOATING CTA + WHATSAPP -->
-  <a class="whatsapp-fab" href="https://wa.me/51999111468" target="_blank" aria-label="WhatsApp">
-    <i class="bi bi-whatsapp" style="font-size:1.25rem;"></i>
-  </a>
-
-  <a class="floating-cta" href="#contacto" title="Inscríbete">
-    <i class="bi bi-pencil-square" style="margin-right:.5rem;"></i> Inscríbete
-  </a>
+  <!-- FLOATING CTA & WHATSAPP -->
+  <a class="whatsapp-fab" href="https://wa.me/51999111468" target="_blank" aria-label="WhatsApp"><i class="bi bi-whatsapp" style="font-size:1.25rem;"></i></a>
+  <a class="floating-cta" href="#contacto" title="Inscríbete"><i class="bi bi-pencil-square" style="margin-right:.5rem;"></i> Inscríbete</a>
 
   <!-- SCRIPTS -->
   <script>
     // Año dinámico
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Smooth scroll for internal links
+    // Smooth scroll internal links
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', function(e){
         const target = document.querySelector(this.getAttribute('href'));
@@ -491,31 +365,19 @@
       });
     });
 
-    // Opcional: si deseas que el CTA aparezca con una pequeña animación solo cuando el slide 2 esté activo,
-    // este script añade/remueve la clase 'show-cta' según el slide. No es obligatorio.
+    // Mostrar/ocultar CTA en slide 2
     (function(){
       const carouselEl = document.getElementById('homeCarousel');
       carouselEl.addEventListener('slid.bs.carousel', function(event){
-        // event.to es el índice del slide actual (0-based)
         const overlay = document.querySelector('.banner-cta');
         if(!overlay) return;
-        if(event.to === 1) {
-          overlay.style.opacity = '1';
-          overlay.style.transform = 'translate(-50%, -50%) scale(1)';
-        } else {
-          overlay.style.opacity = '0';
-          overlay.style.transform = 'translate(-50%, -50%) scale(.98)';
-        }
+        overlay.style.opacity = (event.to === 1) ? '1' : '0';
+        overlay.style.transform = (event.to === 1) ? 'translate(-50%, -50%) scale(1)' : 'translate(-50%, -50%) scale(.98)';
+        overlay.style.transition = 'all .28s ease';
       });
-
-      // Inicializar estado: ocultar CTA si no está en segundo slide
       document.addEventListener('DOMContentLoaded', ()=>{
         const overlay = document.querySelector('.banner-cta');
-        if(overlay) {
-          // si el carousel inicia en slide 0 (por defecto), ocultamos el overlay
-          overlay.style.opacity = '0';
-          overlay.style.transition = 'all .35s ease';
-        }
+        if(overlay){ overlay.style.opacity = '0'; overlay.style.transition = 'all .28s ease'; }
       });
     })();
   </script>
