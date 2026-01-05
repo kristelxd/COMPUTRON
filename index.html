@@ -1,60 +1,146 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CETPRO COMPUTRON — Formación Técnica</title>
-  <meta name="description" content="CETPRO COMPUTRON — Especialidades técnicas: Operación y Maquinaria Pesada, Estética y Cosmetología, Barbería, Computación e Informática, Asistente Administrativo, Hotelería y Turismo.">
-  <!-- Google Fonts -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CETPRO COMPUTRON — Formación técnica</title>
+  <meta name="description" content="CETPRO COMPUTRON | Especialidades técnicas: Operación y Maquinaria Pesada, Estética y Cosmetología, Barbería, Computación e Informática, Asistente Administrativo, Hotelería y Turismo. Modalidades: Vacacional, Modular (6 meses), Anual.">
+  <meta property="og:title" content="CETPRO COMPUTRON — Formación técnica">
+  <meta property="og:description" content="Programas modulares, vacacionales y anuales orientados a empleabilidad. Inscripciones abiertas.">
+  <meta property="og:image" content="img/banner.png">
+  <meta name="theme-color" content="#005EB8">
+
+  <!-- Fuentes e íconos -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
   <style>
     :root{
       --brand-blue: #005EB8;
-      --brand-red:  #D7263D;
-      --brand-white:#FFFFFF;
-      --max-width:1200px;
+      --brand-blue-2: #0b61b3;
+      --brand-red: #D7263D;
+      --muted: #6b7280;
+      --card-radius: 14px;
+      --glass: rgba(255,255,255,0.75);
+      --max-width: 1180px;
     }
-    body { font-family: 'Inter', system-ui, Arial; color:#222; background:#fff; }
-    .navbar { background: linear-gradient(90deg,var(--brand-blue), #0b61b3); }
-    .navbar .nav-link { color: rgba(255,255,255,0.95); }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #122028;
+      background: linear-gradient(180deg,#f7f9fc 0%, #ffffff 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* NAV */
+    .navbar {
+      background: linear-gradient(90deg,var(--brand-blue), var(--brand-blue-2));
+      box-shadow: 0 6px 20px rgba(3,24,78,0.08);
+    }
+    .navbar-brand { display:flex; gap:.8rem; align-items:center; }
+    .navbar-brand img { height:48px; }
+    .nav-link { color: rgba(255,255,255,0.95) !important; }
+    .nav-link:hover { text-decoration: underline; }
+
+    /* HERO */
     .hero {
-      background: linear-gradient(120deg, rgba(0,94,184,0.12), rgba(215,38,61,0.06));
-      border-radius: 1rem;
-      padding: 3rem 1.2rem;
-      margin-top: 1.5rem;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      max-width: var(--max-width);
+      margin: 28px auto 10px;
+      border-radius: 16px;
+      overflow: hidden;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap: 20px;
+      align-items:center;
+      padding: 0;
+      background: linear-gradient(180deg, rgba(0,94,184,0.06), rgba(215,38,61,0.02));
+      box-shadow: 0 18px 60px rgba(3,24,78,0.06);
     }
-    h1.display-5 { font-family: 'Poppins', sans-serif; color:var(--brand-blue); }
-    .btn-primary { background: var(--brand-blue); border: none; box-shadow: 0 6px 18px rgba(0,94,184,0.12); }
-    .accent { color: var(--brand-red); font-weight:600; }
-    .card-specialidad { border: 1px solid rgba(0,94,184,0.08); transition: transform .18s ease, box-shadow .18s ease; border-radius:.7rem; }
-    .card-specialidad:hover { transform: translateY(-6px); box-shadow:0 18px 40px rgba(3,24,78,0.06); }
-    footer { background:#f8f9fa; padding:1.2rem 0; margin-top:2rem; }
-    .floating-cta { position: fixed; right:18px; bottom:18px; z-index:999; border-radius:999px; box-shadow:0 10px 30px rgba(0,0,0,0.12); }
-    .badge-brand { background: var(--brand-blue); color:white; border-radius: .35rem; padding:.4rem .6rem; font-weight:600; }
-    .spec-icon { font-size:1.1rem; margin-right:.5rem; color:var(--brand-blue); }
-    @media(max-width:767px){ .hero { padding:1.4rem; } }
+    .hero-left { padding: 36px; }
+    .hero h1 { font-family: 'Poppins', sans-serif; color: var(--brand-blue); font-size: clamp(1.6rem, 2.8vw, 2.4rem); margin-bottom:.6rem; }
+    .hero p.lead { color:var(--muted); margin-bottom:1rem; }
+    .hero-cta { display:flex; gap:.6rem; align-items:center; margin-top:.6rem; }
+    .hero-cta .btn-primary { background:var(--brand-blue); border: none; padding: .8rem 1.1rem; font-weight:600; box-shadow:0 10px 30px rgba(3,24,78,0.06); }
+    .hero-right img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* Cards grid */
+    .cards-grid {
+      max-width: var(--max-width);
+      margin: 30px auto;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+      gap: 20px;
+      padding: 0 14px 14px;
+    }
+    .spec-card {
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      background: #fff;
+      transition: transform .25s ease, box-shadow .25s ease;
+      box-shadow: 0 8px 30px rgba(3,24,78,0.06);
+      display:flex;
+      flex-direction:column;
+    }
+    .spec-card:hover { transform: translateY(-10px); box-shadow:0 30px 60px rgba(3,24,78,0.08); }
+    .spec-card .media { width:100%; height:170px; object-fit:cover; display:block; }
+    .spec-card .body { padding:16px; flex:1; display:flex; flex-direction:column; gap:8px; }
+    .spec-card h3 { margin:0; color:var(--brand-blue); font-size:1.05rem; }
+    .spec-card p { margin:0; color:var(--muted); font-size:.95rem; }
+    .spec-actions { margin-top:auto; display:flex; gap:.6rem; align-items:center; }
+
+    /* Accordion inside card */
+    .spec-details { background: linear-gradient(180deg, rgba(0,0,0,0.01), rgba(0,0,0,0.003)); padding:14px; border-top:1px solid rgba(0,0,0,0.04); }
+
+    /* Mallas */
+    #mallas .card { border-radius:12px; box-shadow: 0 8px 20px rgba(3,24,78,0.04); }
+
+    /* Sedes */
+    .sede-card { border-radius:12px; padding:14px; background: #fff; box-shadow:0 10px 30px rgba(3,24,78,0.04); }
+
+    /* Floating CTA & WhatsApp */
+    .floating-cta { position: fixed; right: 18px; bottom: 18px; z-index: 1100; border-radius: 999px; display:flex; gap:.6rem; align-items:center; padding:10px 14px; background: linear-gradient(90deg,var(--brand-red), #e23a45); color:white; box-shadow:0 20px 50px rgba(215,38,61,0.18); text-decoration:none; font-weight:600; }
+    .whatsapp-fab { position: fixed; right: 18px; bottom: 86px; z-index:1100; background:#25D366; color:white; width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 16px 36px rgba(0,0,0,0.12); text-decoration:none; }
+
+    /* Footer */
+    footer { margin-top:36px; padding:20px 0; background: #f7f9fc; }
+
+    /* Responsive tweaks */
+    @media(max-width: 980px) {
+      .hero { grid-template-columns: 1fr; padding-bottom:0; }
+      .hero-right { order:-1; }
+      .hero-right img { height:220px; object-fit:cover; }
+    }
+
+    /* Small animations */
+    .fade-up { transform: translateY(10px); opacity:0; animation:fadeUp .7s forwards; }
+    .fade-up.delay-1 { animation-delay:.08s; }
+    .fade-up.delay-2 { animation-delay:.16s; }
+    @keyframes fadeUp { to { transform:none; opacity:1; } }
+
+    /* Accessible focus outlines */
+    a:focus, button:focus { outline:3px solid rgba(0,94,184,0.18); outline-offset:3px; }
   </style>
 </head>
 <body>
+
+  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="#">
-        <img src="img/logo.png" alt="Logo COMPUTRON" style="height:46px; margin-right:12px;">
-        <div>
-          <strong style="letter-spacing:0.4px;">CETPRO</strong><br>
-          <small style="opacity:.85;">COMPUTRON</small>
+    <div class="container" style="max-width:var(--max-width);">
+      <a class="navbar-brand" href="#">
+        <img src="img/logo.png" alt="Logo COMPUTRON" loading="lazy">
+        <div style="display:inline-block;">
+          <div style="font-weight:700; color:white;">CETPRO</div>
+          <div style="font-size:.78rem; color:rgba(255,255,255,0.9);">COMPUTRON</div>
         </div>
       </a>
-      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div id="navMenu" class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto me-2">
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#especialidades">Especialidades</a></li>
           <li class="nav-item"><a class="nav-link" href="#mallas">Mallas</a></li>
           <li class="nav-item"><a class="nav-link" href="#sedes">Sedes</a></li>
@@ -64,300 +150,276 @@
     </div>
   </nav>
 
-  <main class="container" style="max-width:var(--max-width);">
-    <header class="hero mt-4 row align-items-center">
-      <div class="col-lg-7">
-        <h1 class="display-5">Formación técnica con foco en empleo y emprendimiento</h1>
-        <p class="lead text-muted">Programas modulares, vacacionales y anuales. Diseño curricular orientado a prácticas reales y empleabilidad inmediata.</p>
-        <div class="d-flex gap-2">
-          <a href="#especialidades" class="btn btn-primary btn-lg">Ver especialidades</a>
-          <a href="#contacto" class="btn btn-outline-primary btn-lg">Solicitar información</a>
-        </div>
-        <div class="mt-3">
-          <span class="badge-brand me-2">Inscripciones abiertas</span>
-          <small class="text-muted">Clases presenciales y modalidades flexibles</small>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <h1>Formación técnica práctica para trabajar y emprender</h1>
+      <p class="lead">Programas modulares (6 meses), vacacionales y anuales. Mallas orientadas a la práctica, docentes con experiencia y plazas laborales en el sector.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="#especialidades">Ver especialidades</a>
+        <a class="btn btn-outline-primary btn-lg" href="#contacto">Solicitar información</a>
+      </div>
+      <div style="margin-top:14px;">
+        <span style="background:var(--brand-blue); color:white; padding:6px 10px; border-radius:8px; font-weight:600;">Inscripciones abiertas</span>
+        <small style="color:var(--muted); margin-left:8px;">Cupos limitados por inicio de ciclo</small>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="img/banner.png" alt="Banner COMPUTRON" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ESPECIALIDADES (grid con tarjetas) -->
+  <section id="especialidades" class="cards-grid" aria-label="Especialidades">
+    <!-- Tarjeta Operación y Maquinaria Pesada -->
+    <article class="spec-card fade-up delay-1" role="region" aria-labelledby="titulo-maq">
+      <img class="media" src="img/maquinaria-pesada.jpg" alt="Maquinaria pesada" loading="lazy">
+      <div class="body">
+        <h3 id="titulo-maq">Operación y Maquinaria Pesada</h3>
+        <p>Formación en operación segura, mantenimiento básico y prácticas en campo. Enfoque en empleabilidad inmediata.</p>
+        <div class="spec-actions">
+          <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-maq" aria-expanded="false">Ver detalles</button>
+          <a class="btn btn-primary btn-sm" href="mallas/operacion-maquinaria.pdf" target="_blank" rel="noopener">Descargar malla</a>
         </div>
       </div>
-      <div class="col-lg-5 text-lg-end mt-3 mt-lg-0">
-        <img src="img/banner.png" alt="Banner COMPUTRON" style="max-width:360px; border-radius:8px; box-shadow:0 14px 40px rgba(3,24,78,0.06);">
+      <div id="det-maq" class="spec-details collapse">
+        <p><strong>Duración:</strong> Modular (6 meses) / Vacacional / Anual</p>
+        <p><strong>Horarios (Modular):</strong> 1 clase por semana — Sábado o Domingo — 08:00–12:00 o 13:00–17:00</p>
+        <p><strong>Contacto:</strong> <a href="https://wa.me/51999111468" target="_blank">+51 999 111 468</a></p>
       </div>
-    </header>
+    </article>
 
-    <!-- ESPECIALIDADES -->
-    <section id="especialidades" class="mt-5">
-      <div class="d-flex justify-content-between align-items-end">
-        <h2>Especialidades</h2>
-        <p class="text-muted mb-0">Selecciona una para ver malla, horarios y contacto</p>
-      </div>
-
-      <div class="accordion mt-3" id="accordionEspecialidades">
-        <!-- 1 -->
-        <div class="accordion-item card-specialidad mb-3">
-          <h2 class="accordion-header" id="h1">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c1" aria-expanded="false">
-              <i class="bi bi-gear spec-icon"></i> Operación y Maquinaria Pesada
-            </button>
-          </h2>
-          <div id="c1" class="accordion-collapse collapse" data-bs-parent="#accordionEspecialidades">
-            <div class="accordion-body row">
-              <div class="col-md-8">
-                <h5>Malla curricular</h5>
-                <p>Fundamentos de mantenimiento, operación de equipos pesados, seguridad industrial, prácticas en campo.</p>
-                <a href="mallas/operacion-maquinaria.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla (PDF)</a>
-                <hr>
-                <h6>Duración</h6>
-                <p>Modular / Vacacional / Anual (según programa)</p>
-                <h6>Horarios (modalidad Modular — 6 meses)</h6>
-                <ul>
-                  <li>1 clase por semana — Sábado o Domingo</li>
-                  <li>Turnos: 08:00–12:00 o 13:00–17:00</li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <h6>Contacto</h6>
-                <p><strong>WhatsApp:</strong><br>
-                  <a href="https://wa.me/51999111468" target="_blank">+51 999 111 468</a><br>
-                  <a href="https://wa.me/51999111485" target="_blank">+51 999 111 485</a><br>
-                  <a href="https://wa.me/51948055547" target="_blank">+51 948 055 547</a>
-                </p>
-                <a href="#contacto" class="btn btn-primary btn-sm">Solicitar Información</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2 -->
-        <div class="accordion-item card-specialidad mb-3">
-          <h2 class="accordion-header" id="h2">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c2" aria-expanded="false">
-              <i class="bi bi-scissors spec-icon"></i> Estética y Cosmetología
-            </button>
-          </h2>
-          <div id="c2" class="accordion-collapse collapse" data-bs-parent="#accordionEspecialidades">
-            <div class="accordion-body row">
-              <div class="col-md-8">
-                <h5>Malla curricular</h5>
-                <p>Cursos prácticos de cuidado facial, maquillaje profesional, tratamientos estéticos y gestión de servicios.</p>
-                <a href="mallas/estetica-cosmetologia.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla (PDF)</a>
-                <hr>
-                <h6>Duración</h6>
-                <p>Modular / Vacacional / Anual</p>
-                <h6>Horarios (Modular)</h6>
-                <p>1 clase por semana — Sábado o Domingo — 08:00–12:00 o 13:00–17:00</p>
-              </div>
-              <div class="col-md-4">
-                <h6>Contacto</h6>
-                <p><strong>Instagram:</strong> <a href="https://instagram.com/COMPUTRON" target="_blank">@COMPUTRON</a></p>
-                <a href="#contacto" class="btn btn-primary btn-sm">Solicitar Información</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3 -->
-        <div class="accordion-item card-specialidad mb-3">
-          <h2 class="accordion-header" id="h3">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c3" aria-expanded="false">
-              <i class="bi bi-person-badge spec-icon"></i> Barbería
-            </button>
-          </h2>
-          <div id="c3" class="accordion-collapse collapse" data-bs-parent="#accordionEspecialidades">
-            <div class="accordion-body row">
-              <div class="col-md-8">
-                <h5>Malla curricular</h5>
-                <p>Técnicas de corte, afeitado clásico, diseño de barba, atención al cliente y emprendimiento.</p>
-                <a href="mallas/barberia.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla (PDF)</a>
-                <hr>
-                <h6>Duración</h6>
-                <p>Modular / Vacacional / Anual</p>
-                <h6>Horarios (Modular)</h6>
-                <p>1 clase por semana — Sábado o Domingo — 08:00–12:00 o 13:00–17:00</p>
-              </div>
-              <div class="col-md-4">
-                <h6>Contacto</h6>
-                <p><strong>WhatsApp:</strong> <a href="https://wa.me/51999111485" target="_blank">+51 999 111 485</a></p>
-                <a href="#contacto" class="btn btn-primary btn-sm">Solicitar Información</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4 -->
-        <div class="accordion-item card-specialidad mb-3">
-          <h2 class="accordion-header" id="h4">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c4" aria-expanded="false">
-              <i class="bi bi-laptop spec-icon"></i> Computación e Informática
-            </button>
-          </h2>
-          <div id="c4" class="accordion-collapse collapse" data-bs-parent="#accordionEspecialidades">
-            <div class="accordion-body row">
-              <div class="col-md-8">
-                <h5>Malla curricular</h5>
-                <p>Programación básica, ofimática, redes, mantenimiento de PC y proyectos prácticos orientados a empleo.</p>
-                <a href="mallas/computacion-informatica.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla (PDF)</a>
-                <hr>
-                <h6>Duración</h6>
-                <p>Modular (6 meses) / Anual</p>
-                <h6>Horarios (Modular)</h6>
-                <p>1 clase por semana — Sábado o Domingo — 08:00–12:00 o 13:00–17:00</p>
-              </div>
-              <div class="col-md-4">
-                <h6>Contacto</h6>
-                <p><strong>Email:</strong> info@computron.edu.pe</p>
-                <a href="#contacto" class="btn btn-primary btn-sm">Solicitar Información</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5 -->
-        <div class="accordion-item card-specialidad mb-3">
-          <h2 class="accordion-header" id="h5">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c5" aria-expanded="false">
-              <i class="bi bi-briefcase spec-icon"></i> Asistente Administrativo
-            </button>
-          </h2>
-          <div id="c5" class="accordion-collapse collapse" data-bs-parent="#accordionEspecialidades">
-            <div class="accordion-body row">
-              <div class="col-md-8">
-                <h5>Malla curricular</h5>
-                <p>Administración básica, atención al cliente, ofimática avanzada y gestión de documentos.</p>
-                <a href="mallas/asistente-administrativo.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla (PDF)</a>
-                <hr>
-                <h6>Duración</h6>
-                <p>Modular / Anual</p>
-                <h6>Horarios (Modular)</h6>
-                <p>1 clase por semana — Sábado o Domingo — 08:00–12:00 o 13:00–17:00</p>
-              </div>
-              <div class="col-md-4">
-                <h6>Contacto</h6>
-                <p><strong>Teléfono / WhatsApp</strong><br>
-                  <a href="tel:+51999111468">+51 999 111 468</a>
-                </p>
-                <a href="#contacto" class="btn btn-primary btn-sm">Solicitar Información</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6 -->
-        <div class="accordion-item card-specialidad mb-3">
-          <h2 class="accordion-header" id="h6">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c6" aria-expanded="false">
-              <i class="bi bi-emoji-sunglasses spec-icon"></i> Hotelería y Turismo
-            </button>
-          </h2>
-          <div id="c6" class="accordion-collapse collapse" data-bs-parent="#accordionEspecialidades">
-            <div class="accordion-body row">
-              <div class="col-md-8">
-                <h5>Malla curricular</h5>
-                <p>Atención al cliente, gestión hotelera, servicios turísticos y prácticas en empresas locales.</p>
-                <a href="mallas/hoteleria-turismo.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla (PDF)</a>
-                <hr>
-                <h6>Duración</h6>
-                <p>Modular / Vacacional / Anual</p>
-                <h6>Horarios (Modular)</h6>
-                <p>1 clase por semana — Sábado o Domingo — 08:00–12:00 o 13:00–17:00</p>
-              </div>
-              <div class="col-md-4">
-                <h6>Contacto</h6>
-                <p><strong>Facebook:</strong> <a href="https://facebook.com/COMPUTRON" target="_blank">Computron</a></p>
-                <a href="#contacto" class="btn btn-primary btn-sm">Solicitar Información</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- MALLAS -->
-    <section id="mallas" class="mt-5">
-      <h2>Mallas Curriculares</h2>
-      <p class="text-muted">Descarga las mallas completas por especialidad.</p>
-      <div class="row">
-        <div class="col-md-4 mb-3">
-          <div class="card p-3 card-specialidad">
-            <h5>Operación y Maquinaria Pesada</h5>
-            <a href="mallas/operacion-maquinaria.pdf" target="_blank" class="btn btn-outline-primary btn-sm">Descargar malla</a>
-          </div>
-        </div>
-        <div class="col-md-4 mb-3">
-          <div class="card p-3 card-specialidad">
-            <h5>Estética y Cosmetología</h5>
-            <a href="mallas/estetica-cosmetologia.pdf" target="_blank" class="btn btn-outline-primary btn-sm">Descargar malla</a>
-          </div>
-        </div>
-        <div class="col-md-4 mb-3">
-          <div class="card p-3 card-specialidad">
-            <h5>Barbería</h5>
-            <a href="mallas/barberia.pdf" target="_blank" class="btn btn-outline-primary btn-sm">Descargar malla</a>
-          </div>
-        </div>
-        <!-- más tarjetas -->
-      </div>
-    </section>
-
-    <!-- SEDES -->
-    <section id="sedes" class="mt-5">
-      <h2>Sedes</h2>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card p-3 card-specialidad mb-3">
-            <h5>La Merced — Chanchamayo</h5>
-            <p>Dirección: (Indica aquí la dirección exacta si la tienes)</p>
-            <p>Tel/WhatsApp: <a href="https://wa.me/51999111468" target="_blank">+51 999 111 468</a></p>
-            <!-- Si quieres un mapa embed, reemplaza el src del iframe con el embed de Google Maps -->
-            <!-- <iframe src="TU_GOOGLE_MAPS_EMBED_URL" width="100%" height="180" style="border:0;"></iframe> -->
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card p-3 card-specialidad mb-3">
-            <h5>Villarica</h5>
-            <p>Dirección: (Indica aquí la dirección exacta si la tienes)</p>
-            <p>Tel/WhatsApp: <a href="https://wa.me/51948055547" target="_blank">+51 948 055 547</a></p>
-          </div>
+    <!-- Tarjeta Estética y Cosmetología -->
+    <article class="spec-card fade-up delay-2" role="region" aria-labelledby="titulo-est">
+      <img class="media" src="img/estetica-cosmetologia.jpg" alt="Estética y cosmetología" loading="lazy">
+      <div class="body">
+        <h3 id="titulo-est">Estética y Cosmetología</h3>
+        <p>Capacitación práctica en tratamientos estéticos, maquillaje y gestión de servicios de belleza.</p>
+        <div class="spec-actions">
+          <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-est" aria-expanded="false">Ver detalles</button>
+          <a class="btn btn-primary btn-sm" href="mallas/estetica-cosmetologia.pdf" target="_blank" rel="noopener">Descargar malla</a>
         </div>
       </div>
-    </section>
+      <div id="det-est" class="spec-details collapse">
+        <p><strong>Duración:</strong> Modular / Vacacional / Anual</p>
+        <p><strong>Horarios (Modular):</strong> 1 clase por semana — Sábado o Domingo — 08:00–12:00 o 13:00–17:00</p>
+        <p><strong>Instagram:</strong> <a href="https://instagram.com/COMPUTRON" target="_blank">@COMPUTRON</a></p>
+      </div>
+    </article>
 
-    <!-- CONTACTO -->
-    <section id="contacto" class="mt-5 mb-5">
-      <h2>Contacto</h2>
-      <div class="row">
-        <div class="col-md-6">
-          <p>Escríbenos por WhatsApp o completa el formulario mínimo y te contactamos:</p>
-          <p>
-            <a class="btn btn-success mb-2" href="https://wa.me/51999111468" target="_blank"><i class="bi bi-whatsapp"></i> +51 999 111 468</a>
-            <a class="btn btn-success mb-2" href="https://wa.me/51999111485" target="_blank"><i class="bi bi-whatsapp"></i> +51 999 111 485</a>
-            <a class="btn btn-success mb-2" href="https://wa.me/51948055547" target="_blank"><i class="bi bi-whatsapp"></i> +51 948 055 547</a>
-          </p>
-          <p>Síguenos: 
-            <a href="https://instagram.com/COMPUTRON" target="_blank" class="me-2"><i class="bi bi-instagram"></i> Instagram</a>
-            <a href="https://facebook.com/COMPUTRON" target="_blank"><i class="bi bi-facebook"></i> Facebook</a>
-          </p>
-        </div>
-        <div class="col-md-6">
-          <h6>Formulario de solicitud</h6>
-          <!-- Embed: pega aquí el iframe de tu Google Form real (sustituye el src) -->
-          <iframe src="https://docs.google.com/forms/d/e/TU_FORM_ID/viewform?embedded=true" width="100%" height="380" frameborder="0">Cargando…</iframe>
+    <!-- Tarjeta Barbería -->
+    <article class="spec-card fade-up delay-1" role="region" aria-labelledby="titulo-barb">
+      <img class="media" src="img/barberia.jpg" alt="Barbería" loading="lazy">
+      <div class="body">
+        <h3 id="titulo-barb">Barbería</h3>
+        <p>Técnicas modernas de corte, afeitado y diseño de barba, con orientación a emprendimiento.</p>
+        <div class="spec-actions">
+          <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-barb" aria-expanded="false">Ver detalles</button>
+          <a class="btn btn-primary btn-sm" href="mallas/barberia.pdf" target="_blank" rel="noopener">Descargar malla</a>
         </div>
       </div>
-    </section>
-  </main>
+      <div id="det-barb" class="spec-details collapse">
+        <p><strong>Duración:</strong> Modular / Vacacional / Anual</p>
+        <p><strong>Contacto:</strong> <a href="https://wa.me/51999111485" target="_blank">+51 999 111 485</a></p>
+      </div>
+    </article>
 
-  <footer class="text-center">
-    <div class="container">
-      <p>&copy; <span id="year"></span> CETPRO COMPUTRON — Todos los derechos reservados.</p>
+    <!-- Tarjeta Computación e Informática -->
+    <article class="spec-card fade-up delay-2" role="region" aria-labelledby="titulo-comp">
+      <img class="media" src="img/computacion-informatica.jpg" alt="Computación e informática" loading="lazy">
+      <div class="body">
+        <h3 id="titulo-comp">Computación e Informática</h3>
+        <p>Programación básica, ofimática, redes y soporte técnico con proyectos prácticos.</p>
+        <div class="spec-actions">
+          <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-comp" aria-expanded="false">Ver detalles</button>
+          <a class="btn btn-primary btn-sm" href="mallas/computacion-informatica.pdf" target="_blank" rel="noopener">Descargar malla</a>
+        </div>
+      </div>
+      <div id="det-comp" class="spec-details collapse">
+        <p><strong>Duración:</strong> Modular (6 meses) / Anual</p>
+        <p><strong>Horarios (Modular):</strong> 1 clase por semana — Sábado o Domingo — 08:00–12:00 o 13:00–17:00</p>
+        <p><strong>Email:</strong> info@computron.edu.pe</p>
+      </div>
+    </article>
+
+    <!-- Tarjeta Asistente Administrativo -->
+    <article class="spec-card fade-up delay-1" role="region" aria-labelledby="titulo-asist">
+      <img class="media" src="img/asistente-administrativo.jpg" alt="Asistente administrativo" loading="lazy">
+      <div class="body">
+        <h3 id="titulo-asist">Asistente Administrativo</h3>
+        <p>Competencias administrativas, atención al cliente, ofimática y organización documental.</p>
+        <div class="spec-actions">
+          <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-asist" aria-expanded="false">Ver detalles</button>
+          <a class="btn btn-primary btn-sm" href="mallas/asistente-administrativo.pdf" target="_blank" rel="noopener">Descargar malla</a>
+        </div>
+      </div>
+      <div id="det-asist" class="spec-details collapse">
+        <p><strong>Duración:</strong> Modular / Anual</p>
+        <p><strong>Contacto:</strong> <a href="tel:+51999111468">+51 999 111 468</a></p>
+      </div>
+    </article>
+
+    <!-- Tarjeta Hotelería y Turismo -->
+    <article class="spec-card fade-up delay-2" role="region" aria-labelledby="titulo-hot">
+      <img class="media" src="img/hoteleria-turismo.jpg" alt="Hotelería y turismo" loading="lazy">
+      <div class="body">
+        <h3 id="titulo-hot">Hotelería y Turismo</h3>
+        <p>Atención al cliente, gestión hotelera y experiencias turísticas con prácticas en empresas.</p>
+        <div class="spec-actions">
+          <button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#det-hot" aria-expanded="false">Ver detalles</button>
+          <a class="btn btn-primary btn-sm" href="mallas/hoteleria-turismo.pdf" target="_blank" rel="noopener">Descargar malla</a>
+        </div>
+      </div>
+      <div id="det-hot" class="spec-details collapse">
+        <p><strong>Duración:</strong> Modular / Vacacional / Anual</p>
+        <p><strong>Contacto:</strong> <a href="https://facebook.com/COMPUTRON" target="_blank">Facebook — Computron</a></p>
+      </div>
+    </article>
+  </section>
+
+  <!-- MALLAS -->
+  <section id="mallas" class="container" style="max-width:var(--max-width); margin-top:32px;">
+    <h2>Mallas Curriculares</h2>
+    <p class="text-muted">Descarga las mallas completas por especialidad (PDF).</p>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h5>Operación y Maquinaria Pesada</h5>
+          <a href="mallas/operacion-maquinaria.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h5>Estética y Cosmetología</h5>
+          <a href="mallas/estetica-cosmetologia.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h5>Barbería</h5>
+          <a href="mallas/barberia.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h5>Computación e Informática</h5>
+          <a href="mallas/computacion-informatica.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h5>Asistente Administrativo</h5>
+          <a href="mallas/asistente-administrativo.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h5>Hotelería y Turismo</h5>
+          <a href="mallas/hoteleria-turismo.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Descargar malla</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEDES -->
+  <section id="sedes" class="container" style="max-width:var(--max-width); margin-top:34px;">
+    <h2>Sedes</h2>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="sede-card">
+          <h5>La Merced — Chanchamayo</h5>
+          <p class="text-muted mb-1">Dirección: <em>(ingresa la dirección exacta si la tienes)</em></p>
+          <p class="mb-1">Tel/WhatsApp: <a href="https://wa.me/51999111468" target="_blank">+51 999 111 468</a></p>
+          <p class="mb-0"><a href="https://www.google.com/maps" target="_blank">Ver en Google Maps</a></p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="sede-card">
+          <h5>Villarica</h5>
+          <p class="text-muted mb-1">Dirección: <em>(ingresa la dirección exacta si la tienes)</em></p>
+          <p class="mb-1">Tel/WhatsApp: <a href="https://wa.me/51948055547" target="_blank">+51 948 055 547</a></p>
+          <p class="mb-0"><a href="https://www.google.com/maps" target="_blank">Ver en Google Maps</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="container" style="max-width:var(--max-width); margin-top:34px; margin-bottom:36px;">
+    <h2>Contacto</h2>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <p>Escríbenos por WhatsApp o síguenos en nuestras redes sociales. Respuesta rápida y personalizada.</p>
+        <div class="mb-3">
+          <a class="btn btn-success me-2" href="https://wa.me/51999111468" target="_blank"><i class="bi bi-whatsapp"></i> +51 999 111 468</a>
+          <a class="btn btn-success me-2" href="https://wa.me/51999111485" target="_blank"><i class="bi bi-whatsapp"></i> +51 999 111 485</a>
+          <a class="btn btn-success" href="https://wa.me/51948055547" target="_blank"><i class="bi bi-whatsapp"></i> +51 948 055 547</a>
+        </div>
+        <p>Redes: <a href="https://instagram.com/COMPUTRON" target="_blank"><i class="bi bi-instagram"></i> Instagram</a> • <a href="https://facebook.com/COMPUTRON" target="_blank"><i class="bi bi-facebook"></i> Facebook</a></p>
+      </div>
+
+      <div class="col-md-6">
+        <h6>Procedimiento de contacto</h6>
+        <p class="text-muted">Para inscripciones y consultas envía un mensaje por WhatsApp indicando:</p>
+        <ol>
+          <li>Especialidad de interés</li>
+          <li>Sede preferida (La Merced – Chanchamayo o Villarica)</li>
+          <li>Modalidad (Vacacional / Modular / Anual)</li>
+        </ol>
+        <p class="text-muted">Nuestro equipo te responderá con pasos para matrícula, fechas y costos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container" style="max-width:var(--max-width); display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <strong>CETPRO COMPUTRON</strong><br>
+        <small class="text-muted">Formación técnica - Inscripciones abiertas</small>
+      </div>
+      <div style="text-align:right;">
+        <small class="text-muted">© <span id="year"></span> COMPUTRON</small><br>
+        <small class="text-muted">Contacto: info@computron.edu.pe</small>
+      </div>
     </div>
   </footer>
 
-  <!-- Floating CTA (Inscripciones) -->
-  <a class="btn btn-danger btn-lg floating-cta" style="background:var(--brand-red); color:white;" href="#contacto">
-    <i class="bi bi-pencil-square"></i> Inscríbete
+  <!-- FLOATING CTA + WHATSAPP -->
+  <a class="whatsapp-fab" href="https://wa.me/51999111468" target="_blank" aria-label="WhatsApp">
+    <i class="bi bi-whatsapp" style="font-size:1.25rem;"></i>
   </a>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <a class="floating-cta" href="#contacto" title="Inscríbete">
+    <i class="bi bi-pencil-square" style="margin-right:.5rem;"></i> Inscríbete
+  </a>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Año dinámico
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({ behavior:'smooth', block:'start' });
+        }
+      });
+    });
+
+    // Small fade-up animation trigger
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.querySelectorAll('.fade-up').forEach((el,i)=>{
+        el.style.animationDelay = (i*80) + 'ms';
+        el.classList.add('fade-up--run');
+      });
+    });
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
